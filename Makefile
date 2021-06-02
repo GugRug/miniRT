@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/04/16 09:38:42 by gumartin         ###   ########.fr        #
+#    Updated: 2021/06/02 17:37:40 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ SRCS_FILES	=	main.c				\
 
 # Location of the dependencies used
 SRCS_DIR	=	./srcs
-INCS_DIR	=	./include
 OBJS_DIR	=	./objs
-FT_DIR		=	./libs/libft
+INCS_DIR	=	./include
 MLX_DIR		=	./libs/minilibx
+FT_DIR		=	./libs/libft
 X_DIR		=	/usr/include
 
 # C Compiler configuration
@@ -32,7 +32,7 @@ CC_FLAGS	=	-Wall -Wextra -Werror
 LIBFT		=	libft.a
 LIBMLX		=	libmlx.a
 LIBS_DIR_ALL=	-L$(X_DIR) -L$(MLX_DIR) -L$(FT_DIR)
-LIBS_ALL	=	-lbsd -lmlx -lXext -lX11 -lm -lf
+LIBS_ALL	=	-lbsd -lmlx -lXext -lX11 -lm -lft
 INCS_ALL	=	-I$(INCS_DIR) -I$(MLX_DIR) -I$(FT_DIR)
 
 # Apply path to source files and object ones
