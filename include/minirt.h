@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/02 20:24:19 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/06/08 21:01:08 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 # define MINIRT_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "libft.h"
 # include "mlx.h"
+
+/*
+**	--------------- BASIC STRUCTS ---------------
+*/
 
 typedef struct	s_window
 {
@@ -47,5 +51,26 @@ typedef struct	s_coord
 	double		y;
 	double		z;
 }				t_coord;
+
+/*
+**	--------------- FUNCTION DECLARATIONS ---------------
+*/
+
+//TESTE.c
+void	draw_test(t_image *img, int side, int cen_x, int cen_y, int color);
+
+/*
+**	color.c
+*/
+int	conv_color(int red, int green, int blue);
+int	get_red(int rgb);
+int	get_green(int rgb);
+int	get_blue(int rgb);
+int	add_shade(double shade, int rgb);
+
+/*
+**	draw.c
+*/
+void	draw_pixel(t_image *data, int x, int y, int color);
 
 #endif
