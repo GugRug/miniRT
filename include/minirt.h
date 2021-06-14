@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/08 21:01:08 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/06/13 22:10:55 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,46 +18,21 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "mlx.h"
+# include "elem.h"
 
-/*
-**	--------------- BASIC STRUCTS ---------------
-*/
-
-typedef struct	s_window
-{
-	void	*mlx;
-	void	*ptr;
-	int		height;
-	int		width;
-	char	*title;
-}				t_window;
-
-typedef struct	s_image
-{
-	void	*img;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_image;
-
-typedef struct	s_coord
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_coord;
+# define KEY_ESC	0xff1b
+# define KEY_C		0x63
 
 /*
 **	--------------- FUNCTION DECLARATIONS ---------------
 */
 
 //TESTE.c
-void	draw_test(t_image *img, int side, int cen_x, int cen_y, int color);
+int	print_test(void);
+// int	render_next_frame(void *window);
 
 /*
 **	color.c
@@ -72,5 +47,26 @@ int	add_shade(double shade, int rgb);
 **	draw.c
 */
 void	draw_pixel(t_image *data, int x, int y, int color);
+void	draw_background(t_image *img, t_background background);
+
+/*
+**	hook.c
+*/
+int		key_hook(int keycode, t_window *window);
+int		destroy_window(t_window *window);
+
+/*
+**	elem.c
+*/
+void	draw_square(t_image *img, t_elem sqr);
+void	lst_elem_add_back(t_elem **lst, t_elem *new);
+t_elem	*lst_elem_last(t_elem *lst);
+t_elem	*lst_elem_new(t_type type);
+
+/*
+**	scene.c
+*/
+void	get_scene_elem(t_scene *scene);
+void	print_scene_elem(t_image *img, t_scene *scene);
 
 #endif

@@ -28,6 +28,5 @@ int	add_shade(double shade, int rgb)
 	red = (int)(get_red(rgb) * shade) & (0xFF << 16);
 	green = (int)(get_green(rgb) * shade) & (0xFF << 8);
 	blue = (int)(get_blue(rgb) * shade) & (0xFF);
-	write(1, "teste\n", 6);
 	return (red | green | blue);
 }

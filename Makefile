@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/06/08 19:08:43 by gumartin         ###   ########.fr        #
+#    Updated: 2021/06/13 19:53:29 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ SRCS_FILES	=	main.c	\
 				TESTE.c	\
 				color.c	\
 				draw.c	\
+				hook.c	\
+				elem.c	\
+				scene.c	\
 
 # Location of the dependencies used
 SRCS_DIR	=	./srcs
