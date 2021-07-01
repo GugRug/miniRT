@@ -8,7 +8,7 @@ void	draw_pixel(t_image *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_background(t_image *img, t_background background)
+void	draw_background(t_image *img, int color)
 {
 	int	x;
 	int	y;
@@ -19,7 +19,7 @@ void	draw_background(t_image *img, t_background background)
 	{
 		while (x <= img->width)
 		{
-			draw_pixel(img, x, y, background.color);
+			draw_pixel(img, x, y, color);
 			x++;
 		}
 		y++;

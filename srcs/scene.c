@@ -18,7 +18,7 @@ void	get_scene_elem(t_scene *scene)
 	new_elem = lst_elem_new(SQUARE);
 	scene->elem = lst_elem_new(SQUARE);
 	ptr_elem = scene->elem;
-	scene->background.color = TEST_SCENE_BACKGROUND_COLOR;
+	scene->color_background = TEST_SCENE_BACKGROUND_COLOR;
 
 	scene->elem->color = TEST_SCENE_SQUARE_COLOR;
 	scene->elem->side = TEST_SCENE_SQUARE_SIDE;
@@ -36,7 +36,7 @@ void	print_scene_elem(t_image *img, t_scene *scene)
 {
 	t_elem *lst_pointer;
 	lst_pointer = scene->elem;
-	draw_background(img,scene->background);
+	draw_background(img,scene->color_background);
 
 	while(lst_pointer)
 	{

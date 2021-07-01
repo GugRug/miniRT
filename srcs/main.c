@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
 
     //ft_validate(argc, argv); //validate_args and validate_file

@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/06/13 19:53:29 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/01 09:51:34 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,17 @@
 NAME		=	miniRT
 
 # Files needed to build this project
-SRCS_FILES	=	main.c	\
-				TESTE.c	\
-				color.c	\
-				draw.c	\
-				hook.c	\
-				elem.c	\
-				scene.c	\
+SRCS_FILES	=	main.c			\
+				TESTE.c			\
+				color.c			\
+				draw.c			\
+				hook.c			\
+				elem.c			\
+				scene.c			\
+				rt_file.c		\
+				rt_elem.c		\
+				rt_elem_utils.c	\
+				validate.c
 
 # Location of the dependencies used
 SRCS_DIR	=	./srcs

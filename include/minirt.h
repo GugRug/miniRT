@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/13 22:10:55 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:32:11 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	add_shade(double shade, int rgb);
 **	draw.c
 */
 void	draw_pixel(t_image *data, int x, int y, int color);
-void	draw_background(t_image *img, t_background background);
+void	draw_background(t_image *img, int background);
 
 /*
 **	hook.c
@@ -58,15 +58,42 @@ int		destroy_window(t_window *window);
 /*
 **	elem.c
 */
-void	draw_square(t_image *img, t_elem sqr);
+void	draw_square(t_image *img, t_elem *sqr);
 void	lst_elem_add_back(t_elem **lst, t_elem *new);
-t_elem	*lst_elem_last(t_elem *lst);
 t_elem	*lst_elem_new(t_type type);
+t_elem	*lst_elem_last(t_elem *lst);
 
 /*
 **	scene.c
 */
 void	get_scene_elem(t_scene *scene);
 void	print_scene_elem(t_image *img, t_scene *scene);
+
+/*
+**	rt_file.c
+*/
+void	set_rt(t_rt *rt);
+void	set_rt_line_element(t_elem *elem, char *line);
+void	set_rt_element_content(t_elem *elem, char **splitted);
+void	clean_extra_space(char *line);
+
+/*
+**	rt_elem.c
+*/
+double	ft_atof(const char *str);
+void	set_rt_square(t_elem *elem, char **splitted);
+
+/*
+**	rt_elem_utils.c
+*/
+void	set_rt_center(t_elem *elem, char *str);
+void	set_rt_orient_vect(t_elem *elem, char *str);
+void	set_rt_side(t_elem *elem, char *str);
+void	set_rt_color(t_elem *elem, char *str);
+/*
+**	validate.c
+*/
+void	validate_args(int argc, char **argv, t_rt *rt);
+bool	validate_rt_name(char *name);
 
 #endif

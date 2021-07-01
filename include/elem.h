@@ -1,20 +1,27 @@
 #ifndef ELEM_H
 # define ELEM_H
 
+# include <stdbool.h>
 
+/*
+**	--------------- TYPEDEFS DECLARATIONS ---------------
+*/
+
+typedef enum	e_type			t_type;
 typedef struct	s_window		t_window;
 typedef struct	s_image			t_image;
 typedef struct	s_coord			t_coord;
-typedef struct	s_background	t_background;
-typedef struct	s_elem			t_elem;
+typedef struct	s_rt			t_rt;
 typedef struct	s_scene			t_scene;
+typedef struct	s_elem			t_elem;
 
 /*
 **	--------------- BASIC TYPEDEFS ---------------
 */
 
 typedef enum	e_type {
-	AMBIENT_LIGHT,
+	RESOLUTION,
+	AMBIENT_LIGHTINING,
 	CAMERA,
 	LIGHT,
 	SPHERE,
@@ -24,6 +31,11 @@ typedef enum	e_type {
 	TRIANGLE
 }				t_type;
 
+typedef enum	e_error{
+	ERROR_CODE
+}				t_type;
+
+
 typedef struct	s_window
 {
 	void	*mlx;
@@ -32,6 +44,7 @@ typedef struct	s_window
 	int		width;
 	char	*title;
 	int		save;
+	t_rt	*rt;
 }				t_window;
 
 typedef struct	s_image
@@ -53,28 +66,35 @@ typedef struct	s_coord
 }				t_coord;
 
 /*
-**	--------------- ELEMENTS STRUCTS ---------------
+**	--------------- ARGS TYPEDEFS ---------------
+*/
+
+typedef struct	s_rt
+{
+	int			fd;
+	bool		save;
+	int			render_x;
+	int			render_y;
+	t_scene		*scene;
+}				t_rt;
+
+/*
+**	--------------- ELEMENTS TYPEDEFS ---------------
 */
 typedef struct	s_scene
 {
-	t_background	background;
-	t_elem			*elem;
+	t_elem		*elem;
+	int			color_background;
 }				t_scene;
-
-typedef struct	s_background
-{
-	int		color;
-}				t_background;
 
 typedef struct	s_elem
 {
-	t_type			type;
-	t_coord			center;
-	int				side;
+	t_type			*type;
+	t_coord			*center;
+	t_coord			*orient_vect;
+	double			side;
 	int				color;
 	struct s_elem	*next;
 }				t_elem;
-
-
 
 # endif
