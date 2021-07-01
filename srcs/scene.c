@@ -22,13 +22,13 @@ void	get_scene_elem(t_scene *scene)
 
 	scene->elem->color = TEST_SCENE_SQUARE_COLOR;
 	scene->elem->side = TEST_SCENE_SQUARE_SIDE;
-	scene->elem->center.x = TEST_SCENE_SQUARE_CENTER_Y;
-	scene->elem->center.y = TEST_SCENE_SQUARE_CENTER_Y;
+	scene->elem->center->x = TEST_SCENE_SQUARE_CENTER_Y;
+	scene->elem->center->y = TEST_SCENE_SQUARE_CENTER_Y;
 
 	new_elem->color = TEST2_SCENE_SQUARE_COLOR;
 	new_elem->side = TEST2_SCENE_SQUARE_SIDE;
-	new_elem->center.x = TEST2_SCENE_SQUARE_CENTER_Y;
-	new_elem->center.y = TEST2_SCENE_SQUARE_CENTER_Y;
+	new_elem->center->x = TEST2_SCENE_SQUARE_CENTER_Y;
+	new_elem->center->y = TEST2_SCENE_SQUARE_CENTER_Y;
 	lst_elem_add_back(&ptr_elem, new_elem);
 }
 
@@ -36,11 +36,11 @@ void	print_scene_elem(t_image *img, t_scene *scene)
 {
 	t_elem *lst_pointer;
 	lst_pointer = scene->elem;
-	draw_background(img,scene->color_background);
+	// draw_background(img,scene->color_background);
 
 	while(lst_pointer)
 	{
-		draw_square(img, *lst_pointer);
+		draw_square(img, lst_pointer);
 		lst_pointer = lst_pointer->next;
 	}
 }

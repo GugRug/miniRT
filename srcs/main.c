@@ -6,9 +6,13 @@ int main(int argc, char **argv)
     //ft_validate(argc, argv); //validate_args and validate_file
     //need a struture with all args inside
 
+
+
+
+
 	t_window	window;
 	t_image		image;
-	t_scene		scene;
+	// t_scene		scene;
 
 	window.width = 1920;
 	window.height = 1080;
@@ -26,8 +30,9 @@ int main(int argc, char **argv)
 	// draw_square(&image, 50, 400, 400, color);
 	// color = add_shade(0.5, color);
 	// draw_square(&image, 90, 700, 400, color);
-	get_scene_elem(&scene);
-	print_scene_elem(&image, &scene);
+	validate_args(argc, argv, window.rt);
+	// get_scene_elem(&scene);
+	print_scene_elem(&image, &window.rt->scene);
 
 	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);
 

@@ -43,7 +43,6 @@ typedef struct	s_window
 	int		height;
 	int		width;
 	char	*title;
-	int		save;
 	t_rt	*rt;
 }				t_window;
 
