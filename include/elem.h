@@ -33,7 +33,7 @@ typedef enum	e_type {
 
 typedef enum	e_error{
 	ERROR_CODE
-}				t_type;
+}				t_error;
 
 
 typedef struct	s_window
@@ -59,9 +59,9 @@ typedef struct	s_image
 
 typedef struct	s_coord
 {
-	double	x;
-	double	y;
-	double	z;
+	long double	x;
+	long double	y;
+	long double	z;
 }				t_coord;
 
 /*
@@ -88,7 +88,7 @@ typedef struct	s_scene
 
 typedef struct	s_elem
 {
-	t_type			*type;
+	t_type			type;
 	t_coord			*center;
 	t_coord			*orient_vect;
 	double			side;

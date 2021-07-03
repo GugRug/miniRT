@@ -2,12 +2,17 @@
 
 
 
-int	print_test(void)
+int	write_test(void)
 {
-	printf("HELLO!!\n");
+	write(1, "---teste---\n", 12);
 	return (0);
 }
 
+int	print_test(int p)
+{
+	printf("print_test:|%d|\n", p);
+	return (0);
+}
 // int	render_next_frame(void *window)
 // {
 // 	return (0);

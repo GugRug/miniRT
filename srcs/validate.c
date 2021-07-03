@@ -2,7 +2,7 @@
 
 void	validate_args(int argc, char **argv, t_rt *rt)
 {
-	if (argc < 1 || argc > 2)
+	if (argc < 1 || argc > 3)
 		return;
 	if (!argv || !*argv)
 		return;
@@ -10,7 +10,7 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 		rt->fd = open(argv[1], O_RDONLY);
 	else
 		return;
-	if (argc == 2 && !ft_strncmp(argv[2], "--save", 7))
+	if (argc == 3 && !ft_strncmp(argv[2], "--save", 7))
 		rt->save = true;
 	else
 		rt->save = false;
@@ -20,5 +20,6 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 bool	validate_rt_name(char *name)
 {
 	if (name)	//need to test if is *.rt later
-		return true;
+		return (true);
+	return (false);
 }

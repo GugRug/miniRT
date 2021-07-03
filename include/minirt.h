@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/01 10:32:11 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/03 08:23:14 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 */
 
 //TESTE.c
-int	print_test(void);
+int	write_test(void);
+int	print_test(int p);
 // int	render_next_frame(void *window);
 
 /*
@@ -66,14 +67,13 @@ t_elem	*lst_elem_last(t_elem *lst);
 /*
 **	scene.c
 */
-void	get_scene_elem(t_scene *scene);
 void	print_scene_elem(t_image *img, t_scene *scene);
 
 /*
 **	rt_file.c
 */
 void	set_rt(t_rt *rt);
-void	set_rt_line_element(t_elem *elem, char *line);
+void	set_rt_line_element(t_elem **elem, char *line);
 void	set_rt_element_content(t_elem *elem, char **splitted);
 void	clean_extra_space(char *line);
 

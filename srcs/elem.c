@@ -11,7 +11,6 @@ void	draw_square(t_image *img, t_elem *sqr)
 
 	int	i =	sqr->center->x - sqr->side/2;
 	int	j = sqr->center->y - sqr->side/2;
-
 	while (i < end_x)
 	{
 		j = sqr->center->y - sqr->side/2;
@@ -32,6 +31,8 @@ t_elem	*lst_elem_new(t_type type)
 		return (NULL);
 	new->type = type;
 	new->next = NULL;
+	new->center = (t_coord*)malloc(sizeof(t_coord));
+	new->orient_vect = (t_coord*)malloc(sizeof(t_coord));
 	return (new);
 }
 

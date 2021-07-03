@@ -6,10 +6,11 @@ double	ft_atof(const char *str)
 
 	double	n1;
 	double	n2;
-
 	splitted = ft_split(str, '.');
 	n1 = (double)(ft_atoi(splitted[0]));
-	n2 = ft_atoi(splitted[1])/(10 * ft_strlen(splitted[1]));
+	n2 = 0;
+	if (splitted[1])
+		n2 = ft_atoi(splitted[1])/pow(10, ft_strlen(splitted[1]));
 	free(splitted);
 	return (n1 + n2);
 }

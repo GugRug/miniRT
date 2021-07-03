@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/01 09:51:34 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/03 07:16:10 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ X_DIR		=	/usr/include
 # C Compiler configuration
 CC			=	gcc
 CC_FLAGS	=	-Wall -Wextra -Werror
+CC_TESTS	=	-g #-fsanitize=address
 
 # Libraries and its location
 LIBFT		=	libft.a
@@ -52,11 +53,11 @@ OBJS		=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS_FILES))
 all:	$(FT_DIR)/$(LIBFT) $(MLX_DIR)/$(LIBMLX) $(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CC_FLAGS) $^ $(LIBS_DIR_ALL) $(LIBS_ALL) -o $@
+	$(CC) $(CC_FLAGS) $(CC_TESTS) $^ $(LIBS_DIR_ALL) $(LIBS_ALL) -o $@
 
 $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
-	$(CC) $(CC_FLAGS) $(INCS_ALL) -c $< -o $@
+	$(CC) $(CC_FLAGS) $(CC_TESTS) $(INCS_ALL) -c $< -o $@
 
 $(FT_DIR)/$(LIBFT):
 	@echo "Making libft . . ."
