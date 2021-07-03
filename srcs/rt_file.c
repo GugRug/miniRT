@@ -1,22 +1,20 @@
 #include "minirt.h"
 
-void	set_rt(t_rt *rt)
+void	set_rt(t_rt **rt)
 {
 	char	*line;
 	int		gnl;
 
-	gnl = get_next_line(rt->fd, &line);
-	printf("--%s--\n", line);
+	gnl = get_next_line((*rt)->fd, &line);
 	clean_extra_space(line);
 	while (line && gnl > 0)
 	{
-		set_rt_line_element(&rt->scene->elem, line);
+		set_rt_line_element(&((*rt)->scene->elem), line);
 		free(line);
-		gnl = get_next_line(rt->fd, &line);
+		gnl = get_next_line((*rt)->fd, &line);
 		if (gnl <= 0)
 			free(line);
 	}
-		printf("element gnl: |%d|\n", gnl);
 }
 
 void	set_rt_line_element(t_elem **elem, char *line)
@@ -40,15 +38,28 @@ void	set_rt_line_element(t_elem **elem, char *line)
 	splitted = ft_split(line, ' ');
 	set_rt_element_content(lst_elem_last(*elem), splitted);
 	free(splitted);
-	//than send to the specific validator to see if each parameter is correct
 }
 
 void	set_rt_element_content(t_elem *elem, char **splitted)
 {
-	if (elem->type == SQUARE)
-	{
+	if (elem->type == RESOLUTION)
+		set_rt_resolution(elem, splitted);
+	else if (elem->type == AMBIENT_LIGHTINING)
+		set_rt_ambient_lightining(elem, splitted);
+	else if (elem->type == CAMERA)
+		set_rt_camera(elem, splitted);
+	else if (elem->type == LIGHT)
+		set_rt_light(elem, splitted);
+	else if (elem->type == SPHERE)
+		set_rt_sphere(elem, splitted);
+	else if (elem->type == PLANE)
+		set_rt_plane(elem, splitted);
+	else if (elem->type == SQUARE)
 		set_rt_square(elem, splitted);
-	}
+	else if (elem->type == CYLINDER)
+		set_rt_cylinder(elem, splitted);
+	else if (elem->type == TRIANGLE)
+		set_rt_triangle(elem, splitted);
 }
 
 void	clean_extra_space(char *line)

@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/03 08:23:14 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/03 11:01:44 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ t_elem	*lst_elem_last(t_elem *lst);
 **	scene.c
 */
 void	print_scene_elem(t_image *img, t_scene *scene);
+void	select_scene_elem(t_image *img, t_elem *elem);
 
 /*
 **	rt_file.c
 */
-void	set_rt(t_rt *rt);
+void	set_rt(t_rt **rt);
 void	set_rt_line_element(t_elem **elem, char *line);
 void	set_rt_element_content(t_elem *elem, char **splitted);
 void	clean_extra_space(char *line);
@@ -80,15 +81,21 @@ void	clean_extra_space(char *line);
 /*
 **	rt_elem.c
 */
-double	ft_atof(const char *str);
+void	set_rt_resolution(t_elem *elem, char **splitted);
+void	set_rt_ambient_lightining(t_elem *elem, char **splitted);
+void	set_rt_camera(t_elem *elem, char **splitted);
+void	set_rt_light(t_elem *elem, char **splitted);
+void	set_rt_sphere(t_elem *elem, char **splitted);
+void	set_rt_plane(t_elem *elem, char **splitted);
 void	set_rt_square(t_elem *elem, char **splitted);
-
+void	set_rt_cylinder(t_elem *elem, char **splitted);
+void	set_rt_triangle(t_elem *elem, char **splitted);
 /*
 **	rt_elem_utils.c
 */
-void	set_rt_center(t_elem *elem, char *str);
-void	set_rt_orient_vect(t_elem *elem, char *str);
-void	set_rt_side(t_elem *elem, char *str);
+double	ft_atof(const char *str);
+t_coord	*build_point(long double x, long double y, long double z);
+t_coord	*set_rt_point(char *str);
 void	set_rt_color(t_elem *elem, char *str);
 /*
 **	validate.c

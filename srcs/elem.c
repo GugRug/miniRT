@@ -27,12 +27,11 @@ t_elem	*lst_elem_new(t_type type)
 {
 	t_elem *new;
 
-	if (!(new = (t_elem*)malloc(sizeof(t_elem))))
+	if (!(new = (t_elem*)ft_calloc(1, sizeof(t_elem))))
 		return (NULL);
 	new->type = type;
+	new->declared = false;
 	new->next = NULL;
-	new->center = (t_coord*)malloc(sizeof(t_coord));
-	new->orient_vect = (t_coord*)malloc(sizeof(t_coord));
 	return (new);
 }
 

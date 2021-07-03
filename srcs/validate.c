@@ -14,7 +14,7 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 		rt->save = true;
 	else
 		rt->save = false;
-	set_rt(rt);
+	set_rt(&rt);
 }
 
 bool	validate_rt_name(char *name)

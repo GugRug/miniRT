@@ -91,8 +91,21 @@ typedef struct	s_elem
 	t_type			type;
 	t_coord			*center;
 	t_coord			*orient_vect;
+	t_coord			*v_p;
+	t_coord			*l_p;
+	t_coord			*f_p;
+	t_coord			*s_p;
+	t_coord			*t_p;
 	double			side;
 	int				color;
+	int				x;
+	int				y;
+	double			ambient_light;
+	double			diameter;
+	double			height;
+	double			light_brightness;
+	int				fov;
+	bool			declared;
 	struct s_elem	*next;
 }				t_elem;
 
