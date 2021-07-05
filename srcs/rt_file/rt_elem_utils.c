@@ -15,20 +15,9 @@ double	ft_atof(const char *str)
 	return (n1 + n2);
 }
 
-t_coord	*build_point(long double x, long double y, long double z)
+t_coord	set_rt_point(char *str)
 {
-	t_coord	*new;
-
-	new = (t_coord*)ft_calloc(1, sizeof(t_coord));
-	new->x = x;
-	new->y = y;
-	new->z = z;
-	return (new);
-}
-
-t_coord	*set_rt_point(char *str)
-{
-	t_coord	*point;
+	t_coord	point;
 	char	**splitted;
 
 	splitted = ft_split(str, ',');
@@ -40,13 +29,16 @@ t_coord	*set_rt_point(char *str)
 	return (point);
 }
 
-void	set_rt_color(t_elem *elem, char *str)
+int		set_rt_color(char *str)
 {
 	char	**splitted;
+	int		color;
 
 	splitted = ft_split(str, ',');
-	elem->color = conv_color(ft_atoi(splitted[0]),
-							ft_atoi(splitted[1]),
-							ft_atoi(splitted[2]));
+	color = conv_color(ft_atoi(splitted[0]),
+						ft_atoi(splitted[1]),
+						ft_atoi(splitted[2]));
 	free(splitted);
+	splitted = NULL;
+	return (color);
 }

@@ -1,23 +1,41 @@
 #include "minirt.h"
 
-void	set_rt(t_rt **rt)
+void	set_rt(t_rt *rt)
 {
 	char	*line;
 	int		gnl;
+	t_elem	*element;
 
-	gnl = get_next_line((*rt)->fd, &line);
+	gnl = get_next_line(rt->fd, &line);
 	clean_extra_space(line);
 	while (line && gnl > 0)
 	{
-		set_rt_line_element(&((*rt)->scene->elem), line);
+		element = set_rt_line_element(line);
 		free(line);
-		gnl = get_next_line((*rt)->fd, &line);
+		gnl = get_next_line(rt->fd, &line);
 		if (gnl <= 0)
 			free(line);
+		distrib_elem(rt->scene, element);
 	}
+	//resolution implement
 }
 
-void	set_rt_line_element(t_elem **elem, char *line)
+void	distrib_elem(t_scene *scene, t_elem *elem)
+{
+	if (elem->type == CAMERA)
+		lst_elem_add_back(&(scene->camera), elem);
+	else if (elem->type == LIGHT)
+		lst_elem_add_back(&(scene->light), elem);
+	else if (elem->type == RESOLUTION ||
+			elem->type == AMBIENT_LIGHTINING)
+		set_unique_elements(scene, elem);
+	else
+		lst_elem_add_back(&(scene->elem), elem);
+
+
+}
+
+t_elem	*set_rt_line_element(char *line)
 {
 	int		j;
 	char	**splitted;
@@ -30,14 +48,14 @@ void	set_rt_line_element(t_elem **elem, char *line)
 		if (!ft_strncmp(valid[j], line, 2))
 		{
 			element = lst_elem_new(j);
-			lst_elem_add_back(elem, element);
 			break;
 		}
 		j++;
 	}
 	splitted = ft_split(line, ' ');
-	set_rt_element_content(lst_elem_last(*elem), splitted);
+	set_rt_element_content(element, splitted);
 	free(splitted);
+	return (element);
 }
 
 void	set_rt_element_content(t_elem *elem, char **splitted)

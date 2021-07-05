@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/03 07:16:10 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/05 05:13:22 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,17 @@
 NAME		=	miniRT
 
 # Files needed to build this project
-SRCS_FILES	=	main.c			\
-				TESTE.c			\
-				color.c			\
-				draw.c			\
-				hook.c			\
-				elem.c			\
-				scene.c			\
-				rt_file.c		\
-				rt_elem.c		\
-				rt_elem_utils.c	\
-				validate.c
+# SRCS_FILES	=	main.c			\
+# 				TESTE.c			\
+# 				color.c			\
+# 				draw.c			\
+# 				hook.c			\
+# 				elem.c			\
+# 				scene.c			\
+# 				rt_file.c		\
+# 				rt_elem.c		\
+# 				rt_elem_utils.c	\
+# 				validate.c
 
 # Location of the dependencies used
 SRCS_DIR	=	./srcs
@@ -47,8 +47,14 @@ LIBS_ALL	=	-lbsd -lmlx -lXext -lX11 -lm -lft
 INCS_ALL	=	-I$(INCS_DIR) -I$(MLX_DIR) -I$(FT_DIR)
 
 # Apply path to source files and object ones
-SRCS		=	$(patsubst %.c, $(SRCS_DIR)/%.c, $(SRCS_FILES))
-OBJS		=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS_FILES))
+# SRCS		=	$(patsubst %.c, $(SRCS_DIR)/%.c, $(SRCS_FILES))
+# OBJS		=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS_FILES))
+SUBDIRS		= rt_file utils main vector
+
+DIR_SRCS	= $(foreach dir, $(SUBDIRS), $(addprefix $(SRCS_DIR)/, $(dir)))
+DIR_OBJS	= $(foreach dir, $(SUBDIRS), $(addprefix $(OBJS_DIR)/, $(dir)))
+SRCS		= $(foreach dir, $(DIR_SRCS), $(wildcard $(dir)/*.c))
+OBJS		= $(subst $(SRCS_DIR), $(OBJS_DIR), $(SRCS:.c=.o))
 
 all:	$(FT_DIR)/$(LIBFT) $(MLX_DIR)/$(LIBMLX) $(NAME)
 
@@ -56,7 +62,7 @@ $(NAME):	$(OBJS)
 	$(CC) $(CC_FLAGS) $(CC_TESTS) $^ $(LIBS_DIR_ALL) $(LIBS_ALL) -o $@
 
 $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
-	@mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR) $(DIR_OBJS)
 	$(CC) $(CC_FLAGS) $(CC_TESTS) $(INCS_ALL) -c $< -o $@
 
 $(FT_DIR)/$(LIBFT):

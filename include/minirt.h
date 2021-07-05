@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/03 11:01:44 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/05 09:52:32 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "elem.h"
+# include "vector.h"
 
 # define KEY_ESC	0xff1b
 # define KEY_C		0x63
@@ -62,6 +63,7 @@ int		destroy_window(t_window *window);
 void	draw_square(t_image *img, t_elem *sqr);
 void	lst_elem_add_back(t_elem **lst, t_elem *new);
 t_elem	*lst_elem_new(t_type type);
+void	lst_elem_cut(t_elem *elem);
 t_elem	*lst_elem_last(t_elem *lst);
 
 /*
@@ -73,8 +75,9 @@ void	select_scene_elem(t_image *img, t_elem *elem);
 /*
 **	rt_file.c
 */
-void	set_rt(t_rt **rt);
-void	set_rt_line_element(t_elem **elem, char *line);
+void	set_rt(t_rt *rt);
+void	distrib_elem(t_scene *scene, t_elem *elem);
+t_elem	*set_rt_line_element(char *line);
 void	set_rt_element_content(t_elem *elem, char **splitted);
 void	clean_extra_space(char *line);
 
@@ -90,17 +93,31 @@ void	set_rt_plane(t_elem *elem, char **splitted);
 void	set_rt_square(t_elem *elem, char **splitted);
 void	set_rt_cylinder(t_elem *elem, char **splitted);
 void	set_rt_triangle(t_elem *elem, char **splitted);
+
 /*
 **	rt_elem_utils.c
 */
 double	ft_atof(const char *str);
-t_coord	*build_point(long double x, long double y, long double z);
-t_coord	*set_rt_point(char *str);
-void	set_rt_color(t_elem *elem, char *str);
+t_coord	set_rt_point(char *str);
+int		set_rt_color(char *str);
+
 /*
 **	validate.c
 */
 void	validate_args(int argc, char **argv, t_rt *rt);
+void	set_unique_elements(t_scene *scene, t_elem *elem);
 bool	validate_rt_name(char *name);
+
+/*
+**	vector.c
+*/
+t_coord	build_point(long double x, long double y, long double z);
+t_coord	v_add(t_coord v, t_coord u);
+t_coord	v_sub(t_coord v, t_coord u);
+t_coord	v_scale(t_coord v, double f);
+t_coord	v_cross(t_coord v, t_coord u);
+double	v_dot(t_coord v, t_coord u);
+double	v_len(t_coord v);
+double	v_len_sqr(t_coord v);
 
 #endif
