@@ -31,8 +31,6 @@ void	distrib_elem(t_scene *scene, t_elem *elem)
 		set_unique_elements(scene, elem);
 	else
 		lst_elem_add_back(&(scene->elem), elem);
-
-
 }
 
 t_elem	*set_rt_line_element(char *line)

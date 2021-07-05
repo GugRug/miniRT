@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/05 09:52:32 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/05 10:20:59 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,18 @@ int	print_test(int p);
 // int	render_next_frame(void *window);
 
 /*
+**	main.c
+*/
+void	set_window(t_window *window, t_image *image, t_rt *rt, t_scene *scene);
+
+/*
 **	color.c
 */
-int	conv_color(int red, int green, int blue);
-int	get_red(int rgb);
-int	get_green(int rgb);
-int	get_blue(int rgb);
-int	add_shade(double shade, int rgb);
+int		conv_color(int red, int green, int blue);
+int		get_red(int rgb);
+int		get_green(int rgb);
+int		get_blue(int rgb);
+int		add_shade(double shade, int rgb);
 
 /*
 **	draw.c

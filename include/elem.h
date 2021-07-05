@@ -24,6 +24,8 @@ typedef struct	s_plane			t_plane;
 typedef struct	s_square		t_square;
 typedef struct	s_cylinder		t_cylinder;
 typedef struct	s_triangle		t_triangle;
+
+typedef 		t_coord 		t_vect;
 /*
 **	--------------- BASIC TYPEDEFS ---------------
 */
@@ -108,7 +110,7 @@ typedef struct	s_amb_light
 typedef struct	s_camera
 {
 	t_coord		v_p;
-	t_coord		orient_vect;
+	t_vect		orient_vect;
 	int			fov;
 }				t_camera;
 
