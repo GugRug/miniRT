@@ -20,11 +20,12 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 
 void	set_unique_elements(t_scene *scene, t_elem *elem)
 {
-	if((elem->type == RESOLUTION && scene->res.declared == true) ||
-	(elem->type == AMBIENT_LIGHTINING &&
-	scene->amb_light.declared == true))
-		return; //need error here
-	else if (elem->type == RESOLUTION)
+	// if((elem->type == RESOLUTION && scene->res.declared == true) ||
+	// (elem->type == AMBIENT_LIGHTINING &&
+	// scene->amb_light.declared == true))
+	// 	return; //need error here
+	// else
+	if (elem->type == RESOLUTION)
 	{
 		lst_elem_cut(elem);
 		scene->res.x = elem->res.x;

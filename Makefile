@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/05 05:13:22 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/09 08:35:47 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ FT_DIR		=	./libs/libft
 X_DIR		=	/usr/include
 
 # C Compiler configuration
-CC			=	gcc
+CC			=	clang
 CC_FLAGS	=	-Wall -Wextra -Werror
 CC_TESTS	=	-g #-fsanitize=address
 

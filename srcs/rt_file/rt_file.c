@@ -11,7 +11,6 @@ void	set_rt(t_rt *rt)
 	while (line && gnl > 0)
 	{
 		element = set_rt_line_element(line);
-		free(line);
 		gnl = get_next_line(rt->fd, &line);
 		if (gnl <= 0)
 			free(line);
@@ -41,6 +40,7 @@ t_elem	*set_rt_line_element(char *line)
 	static char	*valid[9] = {"R ", "A ", "c ", "l ", "sp", "pl", "sq", "cy", "tr"};
 
 	j = 0;
+	element = NULL;
 	while (valid[j] != NULL)
 	{
 		if (!ft_strncmp(valid[j], line, 2))

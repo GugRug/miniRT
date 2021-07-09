@@ -1,28 +1,5 @@
 #include "minirt.h"
 
-void	draw_square(t_image *img, t_elem *sqr)
-{
-	//SQUARE
-
-	int end_x, end_y;
-
-	end_x =	sqr->square.center.x + sqr->square.side/2;
-	end_y = sqr->square.center.y + sqr->square.side/2;
-
-	int	i =	sqr->square.center.x - sqr->square.side/2;
-	int	j = sqr->square.center.y - sqr->square.side/2;
-	while (i < end_x)
-	{
-		j = sqr->square.center.y - sqr->square.side/2;
-		while (j < end_y)
-		{
-			draw_pixel(img, i, j, sqr->square.color);
-			j++;
-		}
-		i++;
-	}
-}
-
 t_elem	*lst_elem_new(t_type type)
 {
 	t_elem *new;

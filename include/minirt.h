@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/05 10:20:59 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/09 10:58:03 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@
 */
 
 //TESTE.c
-int	write_test(void);
-int	print_test(int p);
+void	draw_square(t_scene *scene, t_elem *sqr);
+int		write_test(void);
+int		print_test(int p);
 // int	render_next_frame(void *window);
 
 /*
 **	main.c
 */
-void	set_window(t_window *window, t_image *image, t_rt *rt, t_scene *scene);
+void	set_init(t_window *window, t_rt *rt, t_scene *scene);
+void	set_init_mlx(t_window *window, t_image *image);
 
 /*
 **	color.c
@@ -54,7 +56,6 @@ int		add_shade(double shade, int rgb);
 **	draw.c
 */
 void	draw_pixel(t_image *data, int x, int y, int color);
-void	draw_background(t_image *img, int background);
 
 /*
 **	hook.c
@@ -65,7 +66,6 @@ int		destroy_window(t_window *window);
 /*
 **	elem.c
 */
-void	draw_square(t_image *img, t_elem *sqr);
 void	lst_elem_add_back(t_elem **lst, t_elem *new);
 t_elem	*lst_elem_new(t_type type);
 void	lst_elem_cut(t_elem *elem);
@@ -75,7 +75,7 @@ t_elem	*lst_elem_last(t_elem *lst);
 **	scene.c
 */
 void	print_scene_elem(t_image *img, t_scene *scene);
-void	select_scene_elem(t_image *img, t_elem *elem);
+void	select_scene_elem(t_scene *scene, t_elem *elem);
 
 /*
 **	rt_file.c
@@ -124,5 +124,12 @@ t_coord	v_cross(t_coord v, t_coord u);
 double	v_dot(t_coord v, t_coord u);
 double	v_len(t_coord v);
 double	v_len_sqr(t_coord v);
+
+/*
+**	canvas.c
+*/
+t_canvas	new_canvas(int width, int height);
+void		set_canvas_point(t_canvas *canvas, int x, int y, int color);
+void		print_canvas(t_canvas *canvas, t_image *img);
 
 #endif

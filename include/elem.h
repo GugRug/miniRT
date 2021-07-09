@@ -24,6 +24,7 @@ typedef struct	s_plane			t_plane;
 typedef struct	s_square		t_square;
 typedef struct	s_cylinder		t_cylinder;
 typedef struct	s_triangle		t_triangle;
+typedef struct	s_canvas		s_canvas;
 
 typedef 		t_coord 		t_vect;
 /*
@@ -177,12 +178,28 @@ typedef struct	s_elem
 	struct s_elem	*prev;
 }				t_elem;
 
+typedef struct	s_canvas
+{
+	int		width;
+	int		height;
+	int		**canv;
+}				t_canvas;
+
 typedef struct	s_scene
 {
 	t_elem		*elem;
 	t_elem		*camera;
 	t_elem		*light;
+	t_canvas	canvas;
 	t_res		res;
 	t_amb_light	amb_light;
 }				t_scene;
+
+typedef struct	s_ray
+{
+	t_coord		orig;
+	t_vect		dir;
+}				t_ray;
+
+
 # endif
