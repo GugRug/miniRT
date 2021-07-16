@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/09 10:58:03 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/16 05:08:57 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "elem.h"
-# include "vector.h"
+# include "canvas.h"
 
 # define KEY_ESC	0xff1b
 # define KEY_C		0x63
@@ -131,5 +131,10 @@ double	v_len_sqr(t_coord v);
 t_canvas	new_canvas(int width, int height);
 void		set_canvas_point(t_canvas *canvas, int x, int y, int color);
 void		print_canvas(t_canvas *canvas, t_image *img);
+
+/*
+**	ray.c
+*/
+t_ray	new_ray(t_vect dir);
 
 #endif

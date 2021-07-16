@@ -2,7 +2,7 @@
 
 void	print_scene_elem(t_image *img, t_scene *scene)
 {
-	t_elem *lst_pointer;
+	t_elem	*lst_pointer;
 
 	lst_pointer = scene->elem;
 	while(lst_pointer)

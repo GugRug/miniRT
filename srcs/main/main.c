@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 	print_scene_elem(&image, window.rt->scene);
 	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);
-	
+
 	mlx_hook(window.win, 4, 1L << 2, print_test, &window);
 	mlx_hook(window.win, 33, 1L << 17, destroy_window, &window);
 	mlx_key_hook(window.win, key_hook, &window);
@@ -43,7 +43,6 @@ void	set_init_mlx(t_window *window, t_image *image)
 	image->width = window->rt->scene->res.x;
 	image->height = window->rt->scene->res.y;
 	window->rt->scene->canvas = new_canvas(window->width, window->height);
-	// new_canvas(window->width, window->height, window->rt->scene);
 	image->img = mlx_new_image(window->mlx, image->width, image->height);
 	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel),
 	&(image->line_length), &(image->endian));
