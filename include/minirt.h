@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/16 14:01:34 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:55:31 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define KEY_C		0x63
 
 # define EPSILON	0.0001
+# define FT_M_PI		3.14159265358979323846
+
 /*
 **	--------------- FUNCTION DECLARATIONS ---------------
 */
@@ -120,15 +122,16 @@ bool	validate_rt_name(char *name);
 /*
 **	vector.c
 */
-t_coord	new_point(long double x, long double y, long double z);
-t_coord	v_add(t_coord v, t_coord u);
-t_coord	v_sub(t_coord v, t_coord u);
-t_coord	v_scale(t_coord v, double f);
-t_coord	v_cross(t_coord v, t_coord u);
-double	v_dot(t_coord v, t_coord u);
-double	v_len(t_coord v);
-double	v_len_sqr(t_coord v);
-
+t_coord	new_point(double x, double y, double z);
+t_vect	v_add(t_vect v, t_vect u);
+t_vect	v_sub(t_vect v, t_vect u);
+t_vect	v_scale(t_vect v, double f);
+t_vect	v_cross(t_vect v, t_vect u);
+t_vect	v_position(t_vect v, t_vect u, double t);
+double	v_dot(t_vect v, t_vect u);
+double	v_len(t_vect v);
+double	v_len_sqred(t_vect v);
+t_vect	v_norm(t_vect v);
 /*
 **	canvas.c
 */
@@ -141,7 +144,6 @@ void		set_canvas(t_canvas *canvas, t_scene *scene);
 **	ray.c
 */
 t_ray	new_ray(t_coord orig, t_vect dir);
-void	intersect(t_scene *scene, t_ray *ray);
 double	baskara_delta(double a, double b, double c);
 double	*baskara(double a, double b, double c);
 void	ray_position(t_ray *ray);
@@ -150,10 +152,23 @@ void	ray_position(t_ray *ray);
 **	raytrace.c
 */
 t_color	raytrace(t_ray *ray, t_scene *scene);
+bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene);
+void	intersect(t_ray *ray, t_scene *scene);
+void	start_raytrace(t_ray *ray, t_scene *scene, double u, double v);
+
+/*
+**	hit.c
+*/
 bool	*hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
 void	hit_sphere(t_elem *elem,t_ray *ray);
 void	hit_plane(t_elem *elem,t_ray *ray);
 void	hit_square(t_elem *elem,t_ray *ray);
 void	hit_cylinder(t_elem *elem,t_ray *ray);
 void	hit_triangle(t_elem *elem,t_ray *ray);
+
+/*
+**	camera.c
+*/
+void	init_camera(t_camera *camera, t_scene *scene);
+
 #endif

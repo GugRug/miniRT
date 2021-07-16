@@ -22,9 +22,12 @@ typedef struct	s_amb_light
 
 typedef struct	s_camera
 {
-	t_coord		v_p;
+	t_coord		orig;
 	t_vect		orient_vect;
-	int			fov;
+	double		fov;
+	t_vect		hor;
+	t_vect		ver;
+	t_coord		llc;
 }				t_camera;
 
 typedef struct	s_light
@@ -32,6 +35,7 @@ typedef struct	s_light
 	t_coord		l_p;
 	double		brightness;
 	int			color;
+	bool		intersect;
 }				t_light;
 
 typedef struct	s_sphere

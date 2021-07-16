@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/09 08:35:47 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/16 14:21:54 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ INCS_ALL	=	-I$(INCS_DIR) -I$(MLX_DIR) -I$(FT_DIR)
 # Apply path to source files and object ones
 # SRCS		=	$(patsubst %.c, $(SRCS_DIR)/%.c, $(SRCS_FILES))
 # OBJS		=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS_FILES))
-SUBDIRS		= rt_file utils main vector
+SUBDIRS		= rt_file utils main vector ray_trace
 
 DIR_SRCS	= $(foreach dir, $(SUBDIRS), $(addprefix $(SRCS_DIR)/, $(dir)))
 DIR_OBJS	= $(foreach dir, $(SUBDIRS), $(addprefix $(OBJS_DIR)/, $(dir)))

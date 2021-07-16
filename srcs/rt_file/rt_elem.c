@@ -24,7 +24,7 @@ void	set_rt_ambient_lightining(t_elem *elem, char **splitted)
 
 void	set_rt_camera(t_elem *elem, char **splitted)
 {
-	elem->camera.v_p = set_rt_point(splitted[1]);
+	elem->camera.orig = set_rt_point(splitted[1]);
 	elem->camera.orient_vect = set_rt_point(splitted[2]);
 	elem->camera.fov = atoi(splitted[3]);
 }

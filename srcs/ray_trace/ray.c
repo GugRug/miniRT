@@ -14,27 +14,6 @@ t_ray	new_ray(t_coord orig, t_vect dir)
 	return (ray);
 }
 
-void	intersect(t_scene *scene, t_ray *ray)
-{
-	t_elem	*elem;
-
-	elem = scene->elem;
-	while (elem)
-	{
-		if (elem->type == SPHERE)
-			hit_sphere(elem, ray);
-		else if (elem->type == PLANE)
-			hit_plane(elem, ray);
-		else if (elem->type == SQUARE)
-			hit_square(elem, ray);
-		else if (elem->type == CYLINDER)
-			hit_cylinder(elem, ray);
-		else if (elem->type == TRIANGLE)
-			hit_triangle(elem, ray);
-		elem = elem->next;
-	}
-}
-
 double	baskara_delta(double a, double b, double c)
 {
 	double	delta;

@@ -1,17 +1,5 @@
 #include "minirt.h"
 
-t_color	raytrace(t_ray *ray, t_scene *scene)
-{
-	t_color	color;
-	t_color	amb;
-
-	amb = color_scale(scene->amb_light.color,
-						scene->amb_light.amb_light);
-	while (scene->light)
-	{
-
-	}
-}
 bool	*hit_sphere_root(t_elem *elem, t_ray *ray, double *root)
 {
 	double	a;
@@ -30,6 +18,7 @@ bool	*hit_sphere_root(t_elem *elem, t_ray *ray, double *root)
 	}
 	return (false);
 }
+
 void	hit_sphere(t_elem *elem,t_ray *ray)
 {
 	int		i;
