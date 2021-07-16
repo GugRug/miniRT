@@ -24,6 +24,7 @@ typedef struct	s_coord
 	long double	z;
 }				t_coord;
 
-typedef t_coord t_vect;
+typedef	t_coord	t_vect;
+typedef	int		t_color;
 
 #endif

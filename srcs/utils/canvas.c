@@ -65,16 +65,17 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 	int		i;
 	int		j;
 	t_ray	ray;
+	t_color	color;
 
 	i = 0;
-	ray = new_ray(build_point(0,0,0), build_point(0,0,0));
 	while (i < canvas->width)
 	{
 		j = 0;
 		while (j < canvas->height)
 		{
-			ray = raytrace(&ray, scene);
-			set_canvas_point(&(scene->canvas), i, j, ray.color);
+			ray = new_ray(new_point(0,0,0), new_point(0,0,0));
+			color = raytrace(&ray, scene);
+			set_canvas_point(&(scene->canvas), i, j, color);
 			j++;
 		}
 		i++;

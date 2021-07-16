@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/16 09:51:00 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/16 14:01:34 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void	set_init_mlx(t_window *window, t_image *image);
 /*
 **	color.c
 */
-int		conv_color(int red, int green, int blue);
-int		get_red(int rgb);
-int		get_green(int rgb);
-int		get_blue(int rgb);
-int		add_shade(double shade, int rgb);
+t_color	color_conv(int red, int green, int blue);
+int		get_red(t_color rgb);
+int		get_green(t_color rgb);
+int		get_blue(t_color rgb);
+t_color	color_add(t_color u, t_color v);
+t_color	color_scale(t_color rgb, double c);
+t_color	color_product(t_color u, t_color v);
 
 /*
 **	draw.c
@@ -118,7 +120,7 @@ bool	validate_rt_name(char *name);
 /*
 **	vector.c
 */
-t_coord	build_point(long double x, long double y, long double z);
+t_coord	new_point(long double x, long double y, long double z);
 t_coord	v_add(t_coord v, t_coord u);
 t_coord	v_sub(t_coord v, t_coord u);
 t_coord	v_scale(t_coord v, double f);
@@ -133,25 +135,25 @@ double	v_len_sqr(t_coord v);
 t_canvas	new_canvas(int width, int height);
 void		set_canvas_point(t_canvas *canvas, int x, int y, int color);
 void		print_canvas(t_canvas *canvas, t_image *img);
-void	set_canvas(t_canvas *canvas, t_scene *scene);
+void		set_canvas(t_canvas *canvas, t_scene *scene);
 
 /*
 **	ray.c
 */
 t_ray	new_ray(t_coord orig, t_vect dir);
-void	shot_ray(t_scene *scene);
-bool	intersect(t_scene *scene, t_ray *ray);
+void	intersect(t_scene *scene, t_ray *ray);
 double	baskara_delta(double a, double b, double c);
-double	*baskara(double a, double b, double delta);
+double	*baskara(double a, double b, double c);
 void	ray_position(t_ray *ray);
 
 /*
 **	raytrace.c
 */
-t_ray	raytrace(t_ray *ray, t_scene *scene);
-bool	hit_sphere(t_elem *elem,t_ray *ray);
-bool	hit_plane(t_elem *elem,t_ray *ray);
-bool	hit_square(t_elem *elem,t_ray *ray);
-bool	hit_cylinder(t_elem *elem,t_ray *ray);
-bool	hit_triangle(t_elem *elem,t_ray *ray);
+t_color	raytrace(t_ray *ray, t_scene *scene);
+bool	*hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
+void	hit_sphere(t_elem *elem,t_ray *ray);
+void	hit_plane(t_elem *elem,t_ray *ray);
+void	hit_square(t_elem *elem,t_ray *ray);
+void	hit_cylinder(t_elem *elem,t_ray *ray);
+void	hit_triangle(t_elem *elem,t_ray *ray);
 #endif

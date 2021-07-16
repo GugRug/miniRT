@@ -21,7 +21,7 @@ t_coord	set_rt_point(char *str)
 	char	**splitted;
 
 	splitted = ft_split(str, ',');
-	point = build_point(ft_atof(splitted[0]),
+	point = new_point(ft_atof(splitted[0]),
 						ft_atof(splitted[1]),
 						ft_atof(splitted[2]));
 	free(splitted);
@@ -35,7 +35,7 @@ int		set_rt_color(char *str)
 	int		color;
 
 	splitted = ft_split(str, ',');
-	color = conv_color(ft_atoi(splitted[0]),
+	color = color_conv(ft_atoi(splitted[0]),
 						ft_atoi(splitted[1]),
 						ft_atoi(splitted[2]));
 	free(splitted);

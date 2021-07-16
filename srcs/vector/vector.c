@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_coord	build_point(long double x, long double y, long double z)
+t_coord	new_point(long double x, long double y, long double z)
 {
 	t_coord	new;
 
@@ -12,22 +12,22 @@ t_coord	build_point(long double x, long double y, long double z)
 
 t_coord	v_add(t_coord v, t_coord u)
 {
-	return (build_point((v.x + u.x), (v.y + u.y), (v.z + u.z)));
+	return (new_point((v.x + u.x), (v.y + u.y), (v.z + u.z)));
 }
 
 t_coord	v_sub(t_coord v, t_coord u)
 {
-	return (build_point((v.x - u.x), (v.y - u.y), (v.z - u.z)));
+	return (new_point((v.x - u.x), (v.y - u.y), (v.z - u.z)));
 }
 
 t_coord	v_scale(t_coord v, double f)
 {
-	return (build_point((f * v.x), (f * v.y), (f * v.z)));
+	return (new_point((f * v.x), (f * v.y), (f * v.z)));
 }
 
 t_coord	v_cross(t_coord v, t_coord u)
 {
-	return (build_point(((v.y * u.z) - (v.z * u.y)),
+	return (new_point(((v.y * u.z) - (v.z * u.y)),
 						((v.z * u.x) - (v.x * u.z)),
 						((v.x * u.y) - (v.y * u.x))));
 }

@@ -70,7 +70,7 @@ typedef struct	s_ray
 	t_coord		orig;
 	t_vect		dir;
 	t_vect		pos;
-	double		root;
+	double		*root;
 	double		t;
 	bool		intersect;
 	int			color;
