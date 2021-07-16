@@ -32,6 +32,11 @@ t_coord	v_cross(t_coord v, t_coord u)
 						((v.x * u.y) - (v.y * u.x))));
 }
 
+t_vect	v_position(t_coord v, t_coord u, double t)
+{
+	return (v_add(v, v_scale(u, t)));
+}
+
 double	v_dot(t_coord v, t_coord u)
 {
 	return ((v.x * u.x) + (v.y * u.y) + (v.z * u.z));

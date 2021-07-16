@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/16 05:08:57 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/16 09:51:00 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@
 # define KEY_ESC	0xff1b
 # define KEY_C		0x63
 
+# define EPSILON	0.0001
 /*
 **	--------------- FUNCTION DECLARATIONS ---------------
 */
 
 //TESTE.c
+void	main_teste();
 void	draw_square(t_scene *scene, t_elem *sqr);
 int		write_test(void);
 int		print_test(int p);
@@ -131,10 +133,25 @@ double	v_len_sqr(t_coord v);
 t_canvas	new_canvas(int width, int height);
 void		set_canvas_point(t_canvas *canvas, int x, int y, int color);
 void		print_canvas(t_canvas *canvas, t_image *img);
+void	set_canvas(t_canvas *canvas, t_scene *scene);
 
 /*
 **	ray.c
 */
-t_ray	new_ray(t_vect dir);
+t_ray	new_ray(t_coord orig, t_vect dir);
+void	shot_ray(t_scene *scene);
+bool	intersect(t_scene *scene, t_ray *ray);
+double	baskara_delta(double a, double b, double c);
+double	*baskara(double a, double b, double delta);
+void	ray_position(t_ray *ray);
 
+/*
+**	raytrace.c
+*/
+t_ray	raytrace(t_ray *ray, t_scene *scene);
+bool	hit_sphere(t_elem *elem,t_ray *ray);
+bool	hit_plane(t_elem *elem,t_ray *ray);
+bool	hit_square(t_elem *elem,t_ray *ray);
+bool	hit_cylinder(t_elem *elem,t_ray *ray);
+bool	hit_triangle(t_elem *elem,t_ray *ray);
 #endif

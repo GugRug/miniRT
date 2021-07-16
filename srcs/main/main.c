@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	set_init_mlx(&window, &image);
 
 	print_scene_elem(&image, window.rt->scene);
+	main_test();
 	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);
 
 	mlx_hook(window.win, 4, 1L << 2, print_test, &window);

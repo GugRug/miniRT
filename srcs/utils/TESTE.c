@@ -1,5 +1,12 @@
 #include "minirt.h"
 
+void	main_teste()
+{
+	t_ray	ray;
+	ray = new_ray(build_point(1,2,3), build_point(4,5,6));
+	
+}
+
 void	draw_square(t_scene *scene, t_elem *sqr)
 {
 	//SQUARE

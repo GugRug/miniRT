@@ -60,4 +60,23 @@ void	print_canvas(t_canvas *canvas, t_image *img)
 	}
 }
 
+void	set_canvas(t_canvas *canvas, t_scene *scene)
+{
+	int		i;
+	int		j;
+	t_ray	ray;
 
+	i = 0;
+	ray = new_ray(build_point(0,0,0), build_point(0,0,0));
+	while (i < canvas->width)
+	{
+		j = 0;
+		while (j < canvas->height)
+		{
+			ray = raytrace(&ray, scene);
+			set_canvas_point(&(scene->canvas), i, j, ray.color);
+			j++;
+		}
+		i++;
+	}
+}

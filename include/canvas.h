@@ -11,6 +11,7 @@
 
 typedef	struct s_rt		t_rt;
 typedef	struct s_scene	t_scene;
+typedef	struct s_ray	t_ray;
 
 typedef struct	s_window
 {
@@ -59,6 +60,7 @@ typedef struct	s_scene
 	t_elem		*camera;
 	t_elem		*light;
 	t_canvas	canvas;
+	t_ray		ray;
 	t_res		res;
 	t_amb_light	amb_light;
 }				t_scene;
@@ -67,6 +69,10 @@ typedef struct	s_ray
 {
 	t_coord		orig;
 	t_vect		dir;
+	t_vect		pos;
+	double		root;
+	double		t;
+	bool		intersect;
 	int			color;
 }				t_ray;
 
