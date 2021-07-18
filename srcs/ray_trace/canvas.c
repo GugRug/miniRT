@@ -74,7 +74,7 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		while (j-- > 0)
 		{
 			// ray = new_ray(new_point(0,0,0), new_point(0,0,0));
-			if (i == 469 && j == 199)
+			if (i == 508 && j == 126)
 			{
 				color = 0;
 				ray = start_raytrace(scene,

@@ -15,6 +15,7 @@ void	init_camera(t_camera *camera, t_scene *scene)
 		ratio = ((double)(scene->res.y) /scene->res.x);
 		camera->fov = 2 * tan((camera->fov * (FT_M_PI / 180)) / 2);
 		camera->orient_vect = v_scale(camera->orient_vect, -1);
+		camera->orient_vect = v_norm(camera->orient_vect);
 		w = v_norm(camera->orient_vect);
 		u = v_cross(new_point(0, 1, 0), w);
 		v = v_cross(w, u);

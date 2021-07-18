@@ -27,14 +27,17 @@ void	hit_sphere(t_elem *elem,t_ray *ray)
 	//print_test(4);
 	while (i < 2)
 	{
+		if (ray->dir.x > 1.0)
+		{
+			print_test(ray->dir.x);
+		}
 		if (ray->t > root[i] && root[i] > 0)
 		{
 			ray->intersect = true;
 			ray->t = root[i];
 			ray->norm = v_norm(ray->dir);
 			ray->color = elem->sphere.color;
-			// if (ray->intersect)
-				//print_test(3);
+			// ray_position(ray);
 		}
 		i++;
 	}
