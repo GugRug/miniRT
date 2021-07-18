@@ -12,24 +12,41 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 						scene->amb_light.amb_light);
 	if (!(ray->intersect))
 		return (0);
-	color = ray->color;
-	color = color_product(color, amb);
+	color = color_product(ray->color, amb);
 	while (lgt)
 	{
 		light = &(lgt->light);
 		light->color = color_scale(light->color,
 									light->brightness);
-		color = color_product(color, light->color);
-		light->intersect = light_intersect(ray, light, scene); //create a ray going from l_p instead of camera, call the intersect funct
-
-
+		if (light_intersect(ray, light, scene))
+			color = color_add(color, light->color);
 		lgt = lgt->next;
 	}
+	return (color);
 }
 
 bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene)
 {
-	t_ray	light_ray; //ray - l_p ?
+	t_ray	light_ray;
+	double	r2;
+	double	gain;
+
+	light_ray.dir = v_sub(ray->dir, light->l_p);
+	light_ray.orig = light->l_p;
+	intersect(&light_ray, scene);
+	if(light_ray.intersect)
+	{
+		light_ray.norm = v_norm(light_ray.dir);
+		r2 = v_len_sqred(light_ray.norm);
+		gain = v_dot(light_ray.norm, ray->norm);
+		if (gain < 0)
+			gain = 0;
+		gain *= 1000;
+		light->brightness = (light->brightness * gain) /
+							(4.0 * FT_M_PI * r2);
+		light->color = color_product(color_scale(ray->color, light->brightness), light->color);
+	}
+	return (light_ray.intersect);
 }
 
 void	intersect(t_ray *ray, t_scene *scene)
@@ -66,6 +83,5 @@ void	start_raytrace(t_ray *ray, t_scene *scene, double u, double v)
 	ray->dir = v_add(v_scale(hor, u), v_scale(ver, v));
 	ray->dir = v_add(ray->dir, llc);
 	ray->dir = v_norm(v_sub(ray->dir, ray->orig));
-	ray->pos = ray->dir;
 	intersect(ray, scene);
 }

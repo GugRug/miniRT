@@ -35,5 +35,5 @@ double	*baskara(double a, double b, double c)
 
 void	ray_position(t_ray *ray)
 {
-	ray->pos = v_add(ray->orig, v_scale(ray->dir, ray->t));
+	ray->dir = v_add(ray->orig, v_scale(ray->dir, ray->t));
 }

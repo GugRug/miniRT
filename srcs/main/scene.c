@@ -2,14 +2,15 @@
 
 void	print_scene_elem(t_image *img, t_scene *scene)
 {
-	t_elem	*lst_pointer;
+	// t_elem	*lst_pointer;
 
-	lst_pointer = scene->elem;
-	while(lst_pointer)
-	{
-		select_scene_elem(scene, lst_pointer);
-		lst_pointer = lst_pointer->next;
-	}
+	// lst_pointer = scene->elem;
+	// while(lst_pointer)
+	// {
+	// 	select_scene_elem(scene, lst_pointer);
+	// 	lst_pointer = lst_pointer->next;
+	// }
+	set_canvas(&(scene->canvas), scene);
 	print_canvas(&(scene->canvas), img);
 }
 
