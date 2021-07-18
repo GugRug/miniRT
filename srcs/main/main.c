@@ -10,8 +10,12 @@ int main(int argc, char **argv)
 	set_init(&window, &rt, &scene);
 	validate_args(argc, argv, window.rt);
 	set_init_mlx(&window, &image);
-	//mlx_get_screen_size	//need this to correct camera
-	
+	mlx_get_screen_size(window.mlx, &(window.rt->width),
+						&(window.rt->height));	//need this to correct camera
+	if (window.rt->scene->res.x > window.rt->width)
+		window.rt->scene->res.x = window.rt->width;
+	if (window.rt->scene->res.y > window.rt->height)
+		window.rt->scene->res.y = window.rt->height;
 	print_scene_elem(&image, window.rt->scene);
 	//main_test();
 	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);

@@ -42,8 +42,8 @@ typedef struct	s_rt
 {
 	int			fd;
 	bool		save;
-	int			render_x;
-	int			render_y;
+	int			width;
+	int			height;
 	t_scene		*scene;
 }				t_rt;
 
