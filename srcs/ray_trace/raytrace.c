@@ -18,7 +18,10 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 	// 	printf("raytrace Color:   |%x|\n", color);
 	while (lgt)
 	{
+	// if (color > 0)
+	// 	printf("Color: |%x|\n", color);
 		light = &(lgt->light);
+		// printf("Color: |%x|\n", lgt->light.color);
 		light->color = color_scale(light->color,
 									light->brightness);
 		if (light_intersect(ray, light, scene))
