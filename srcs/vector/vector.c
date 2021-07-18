@@ -44,7 +44,7 @@ double	v_dot(t_vect v, t_vect u)
 
 double	v_len(t_vect v)
 {
-	return (sqrt(v_len_sqr(v)));
+	return (sqrt(v_len_sqred(v)));
 }
 
 double	v_len_sqred(t_vect v)

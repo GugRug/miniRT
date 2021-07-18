@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/16 16:55:31 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/18 08:47:06 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 void	main_teste();
 void	draw_square(t_scene *scene, t_elem *sqr);
 int		write_test(void);
-int		print_test(int p);
+int		print_test(double p);
 // int	render_next_frame(void *window);
 
 /*
@@ -144,8 +144,7 @@ void		set_canvas(t_canvas *canvas, t_scene *scene);
 **	ray.c
 */
 t_ray	new_ray(t_coord orig, t_vect dir);
-double	baskara_delta(double a, double b, double c);
-double	*baskara(double a, double b, double c);
+double	baskara(double a, double b, double c, double *root);
 void	ray_position(t_ray *ray);
 
 /*
@@ -154,17 +153,17 @@ void	ray_position(t_ray *ray);
 t_color	raytrace(t_ray *ray, t_scene *scene);
 bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene);
 void	intersect(t_ray *ray, t_scene *scene);
-void	start_raytrace(t_ray *ray, t_scene *scene, double u, double v);
+t_ray	start_raytrace(t_scene *scene, double u, double v);
 
 /*
 **	hit.c
 */
-bool	*hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
+bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
 void	hit_sphere(t_elem *elem,t_ray *ray);
-void	hit_plane(t_elem *elem,t_ray *ray);
-void	hit_square(t_elem *elem,t_ray *ray);
-void	hit_cylinder(t_elem *elem,t_ray *ray);
-void	hit_triangle(t_elem *elem,t_ray *ray);
+// void	hit_plane(t_elem *elem,t_ray *ray);
+// void	hit_square(t_elem *elem,t_ray *ray);
+// void	hit_cylinder(t_elem *elem,t_ray *ray);
+// void	hit_triangle(t_elem *elem,t_ray *ray);
 
 /*
 **	camera.c

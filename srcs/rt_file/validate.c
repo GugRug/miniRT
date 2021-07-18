@@ -32,6 +32,8 @@ void	set_unique_elements(t_scene *scene, t_elem *elem)
 		scene->res.y = elem->res.y;
 		scene->res.declared = true;
 		//delete elem
+		free(elem);
+		elem = NULL;
 	}
 	else if (elem->type == AMBIENT_LIGHTINING)
 	{
@@ -39,6 +41,8 @@ void	set_unique_elements(t_scene *scene, t_elem *elem)
 		scene->amb_light.amb_light = elem->amb_light.amb_light;
 		scene->amb_light.color = elem->amb_light.color;
 		scene->amb_light.declared = true;
+		free(elem);
+		elem = NULL;
 		//delete elem
 	}
 }

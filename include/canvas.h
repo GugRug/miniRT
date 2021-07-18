@@ -54,6 +54,18 @@ typedef struct	s_canvas
 	int		**canv;
 }				t_canvas;
 
+
+typedef struct	s_ray
+{
+	t_coord		orig;
+	t_vect		dir;
+	t_vect		norm;
+	double		*root;
+	double		t;
+	bool		intersect;
+	int			color;
+}				t_ray;
+
 typedef struct	s_scene
 {
 	t_elem		*elem;
@@ -64,17 +76,5 @@ typedef struct	s_scene
 	t_res		res;
 	t_amb_light	amb_light;
 }				t_scene;
-
-typedef struct	s_ray
-{
-	t_coord		orig;
-	t_vect		dir;
-	t_vect		pos;
-	t_vect		norm;
-	double		*root;
-	double		t;
-	bool		intersect;
-	int			color;
-}				t_ray;
 
 #endif

@@ -12,7 +12,10 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 						scene->amb_light.amb_light);
 	if (!(ray->intersect))
 		return (0);
+	// print_test(ray->color);
 	color = color_product(ray->color, amb);
+	// if (color != 0)
+	// 	printf("raytrace Color:   |%x|\n", color);
 	while (lgt)
 	{
 		light = &(lgt->light);
@@ -58,30 +61,40 @@ void	intersect(t_ray *ray, t_scene *scene)
 	{
 		if (elem->type == SPHERE)
 			hit_sphere(elem, ray);
-		else if (elem->type == PLANE)
-			hit_plane(elem, ray);
-		else if (elem->type == SQUARE)
-			hit_square(elem, ray);
-		else if (elem->type == CYLINDER)
-			hit_cylinder(elem, ray);
-		else if (elem->type == TRIANGLE)
-			hit_triangle(elem, ray);
+		// else if (elem->type == PLANE)
+		// 	hit_plane(elem, ray);
+		// else if (elem->type == SQUARE)
+		// 	hit_square(elem, ray);
+		// else if (elem->type == CYLINDER)
+		// 	hit_cylinder(elem, ray);
+		// else if (elem->type == TRIANGLE)
+		// 	hit_triangle(elem, ray);
 		elem = elem->next;
 	}
+	if (!(ray->intersect))
+		return;
+	//print_test(42);
 }
 
-void	start_raytrace(t_ray *ray, t_scene *scene, double u, double v)
+t_ray	start_raytrace(t_scene *scene, double u, double v)
 {
 	t_vect	hor;
 	t_vect	ver;
 	t_vect	llc;
+	t_ray	ray;
 
 	hor = scene->camera->camera.hor;
 	ver = scene->camera->camera.ver;
 	llc = scene->camera->camera.llc;
-	ray->orig = scene->camera->camera.orig;
-	ray->dir = v_add(v_scale(hor, u), v_scale(ver, v));
-	ray->dir = v_add(ray->dir, llc);
-	ray->dir = v_norm(v_sub(ray->dir, ray->orig));
-	intersect(ray, scene);
+
+	ray.orig = scene->camera->camera.orig;
+	ray.dir = v_add(v_scale(hor, u), v_scale(ver, v));
+	ray.dir = v_add(ray.dir, llc);
+	ray.dir = v_norm(v_sub(ray.dir, ray.orig));
+	ray.root = 0;
+	ray.t = INFINITY;
+	ray.intersect = false;
+	ray.color = 0;
+	intersect(&ray, scene);
+	return (ray);
 }

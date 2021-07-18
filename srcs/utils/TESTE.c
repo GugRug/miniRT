@@ -36,9 +36,9 @@ int	write_test(void)
 	return (0);
 }
 
-int	print_test(int p)
+int	print_test(double p)
 {
-	printf("print_test:|%d|\n", p);
+	printf("print_test:|%f|\n", p);
 	return (0);
 }
 // int	render_next_frame(void *window)

@@ -6,7 +6,6 @@ t_ray	new_ray(t_coord orig, t_vect dir)
 
 	ray.orig = orig;
 	ray.dir = dir;
-	ray.pos = dir;
 	ray.root = 0;
 	ray.t = INFINITY;
 	ray.intersect = false;
@@ -14,23 +13,21 @@ t_ray	new_ray(t_coord orig, t_vect dir)
 	return (ray);
 }
 
-double	baskara_delta(double a, double b, double c)
+double	baskara(double a, double b, double c, double *root)
 {
 	double	delta;
-
-	delta = b*b - 4*a*c;
-	return (delta);
-}
-
-double	*baskara(double a, double b, double c)
-{
-	double	delta;
-	double	root[2];
+	double	temp;
 
 	delta = b*b - 4*a*c;
 	root[0] = ((-1)*b - sqrt(delta)) / (2*a);
 	root[1] = ((-1)*b + sqrt(delta)) / (2*a);
-	return (root);
+	if (root[0] > root[1])
+	{
+		temp = root[0];
+		root[0] = root[1];
+		root[1] = temp;
+	}
+	return (delta);
 }
 
 void	ray_position(t_ray *ray)
