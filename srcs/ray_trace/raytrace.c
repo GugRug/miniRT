@@ -71,8 +71,8 @@ void	intersect(t_ray *ray, t_scene *scene)
 		// 	hit_triangle(elem, ray);
 		elem = elem->next;
 	}
-	if (!(ray->intersect))
-		return;
+	// if ((ray->intersect))
+	// 	ray_position(ray);
 	//print_test(42);
 }
 

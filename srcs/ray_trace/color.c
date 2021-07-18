@@ -59,11 +59,11 @@ t_color	color_product(t_color u, t_color v)
 	int		g;
 	int		b;
 
-	r = (((float)get_red(u) / 0xFF) *
-			((float)get_red(v) / 0xFF)) * 0xFF;
-	g = (((float)get_green(u) / 0xFF) *
-			(float)get_green(v) / 0xFF) * 0xFF;
-	b = (((float)get_blue(u) / 0xFF) *
-			((float)get_blue(v) / 0xFF)) * 0xFF;
+	r = (((float)(u >> 0x10) / 0xFF) *
+			((float)(v >> 0x10) / 0xFF)) * 0xFF;
+	g = (((float)((u >> 0x08) & 0xFF) / 0xFF) *
+			((float)((v >> 0x08) & 0xFF) / 0xFF)) * 0xFF;
+	b = (((float)(u & 0xFF) / 0xFF) *
+			((float)(v & 0xFF) / 0xFF)) * 0xFF;
 	return ((r << 16) | (g << 8) | b);
 }

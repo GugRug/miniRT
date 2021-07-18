@@ -35,7 +35,6 @@ void	hit_sphere(t_elem *elem,t_ray *ray)
 			ray->color = elem->sphere.color;
 			// if (ray->intersect)
 				//print_test(3);
-			ray_position(ray);
 		}
 		i++;
 	}

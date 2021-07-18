@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/18 08:47:06 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/18 09:47:20 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 //TESTE.c
 void	main_teste();
+int		mouse_track(int button, int x, int y, t_window *window);
 void	draw_square(t_scene *scene, t_elem *sqr);
 int		write_test(void);
 int		print_test(double p);

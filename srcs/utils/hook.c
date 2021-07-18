@@ -2,7 +2,7 @@
 
 int	key_hook(int keycode, t_window *window)
 {
-	printf("\nKeycode: %x\n---\n", keycode);
+	// printf("\nKeycode: %x\n---\n", keycode);
 	if (keycode == KEY_ESC)
 		destroy_window(window);
 	return (1);
