@@ -75,9 +75,9 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		{
 			ray = start_raytrace(scene, (double)(i)/canvas->width, (double)(j)/canvas->height);
 
-			if (i == 613 && j == 142)
+			if (i == 614 && j == 57)
 			{
-				printf("\n------ At i == 613 && j == 142! ------\n");
+				printf("\n------ At i == 614 && j == 57! ------\n");
 			}
 
 			color = raytrace(&ray, scene);

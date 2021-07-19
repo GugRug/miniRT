@@ -3,7 +3,7 @@
 t_color	raytrace(t_ray *ray, t_scene *scene)
 {
 	t_color	color;
-	t_color comp_color = 0;
+	t_color comp_color;
 	t_color	amb;
 	t_elem	*lgt;
 	t_light	*light;
@@ -36,6 +36,7 @@ bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color)
 	double	gain;
 	double	brightness;
 
+	*color = 0;
 	light_ray.orig = v_add(ray->pos, v_scale(ray->normal, EPSILON));
 	light_ray.dir = v_norm(v_sub(light->l_p, light_ray.orig));
 	intersect(&light_ray, scene);
@@ -50,7 +51,7 @@ bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color)
 		brightness = (light->brightness * gain) /
 							(4.0 * FT_M_PI * r2);
 		*color = color_product(color_scale(ray->color, brightness),
-							color_scale(light->color, light->brightness));
+							light->color);
 	}
 	return (light_ray.intersect);
 }

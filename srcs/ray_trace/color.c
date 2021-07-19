@@ -1,5 +1,12 @@
 #include "minirt.h"
 
+static int	clamp(int x)
+{
+	if (x > 0xFF)
+		return (0xFF);
+	return (x < 0 ? 0 : x);
+}
+
 t_color	color_conv(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
@@ -35,10 +42,10 @@ t_color	color_add(t_color u, t_color v)
 	int 	green;
 	int 	blue;
 
-	red = (get_red(u) + get_red(v)) & (0xFF << 16);
-	green = (get_green(u) + get_green(v)) & (0xFF << 8);
-	blue = (get_blue(u) + get_blue(v)) & (0xFF);
-	return (red | green | blue);
+	red = clamp((u >> 0x10) + (v >> 0x10));
+	green = clamp((u >> 0x08 & 0xFF) + (v >> 0x08 & 0xFF));
+	blue = clamp((u & 0xFF) + (v & 0xFF));
+	return ((red << 16) | (green << 8) | blue);
 }
 
 t_color	color_scale(t_color rgb, double c)
@@ -47,10 +54,10 @@ t_color	color_scale(t_color rgb, double c)
 	int 	green;
 	int 	blue;
 
-	red = (int)(get_red(rgb) * c) & (0xFF << 16);
-	green = (int)(get_green(rgb) * c) & (0xFF << 8);
-	blue = (int)(get_blue(rgb) * c) & (0xFF);
-	return (red | green | blue);
+	red = clamp(c * (rgb >> 0x10));
+	green = clamp(c * ((rgb >> 0x08) & 0xFF));
+	blue = clamp(c * (rgb & 0xFF));
+	return ((red << 16) | (green << 8) | blue);
 }
 
 t_color	color_product(t_color u, t_color v)
