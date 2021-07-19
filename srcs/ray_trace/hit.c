@@ -35,9 +35,10 @@ void	hit_sphere(t_elem *elem,t_ray *ray)
 		{
 			ray->intersect = true;
 			ray->t = root[i];
-			ray->norm = v_norm(ray->dir);
+			ray_position(ray);
+			ray->normal = v_norm(v_sub(ray->pos, elem->sphere.center));
+			// ray->normal = v_norm(ray->dir);
 			ray->color = elem->sphere.color;
-			// ray_position(ray);
 		}
 		i++;
 	}

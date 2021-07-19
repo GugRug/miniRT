@@ -17,7 +17,7 @@ void	set_rt_ambient_lightining(t_elem *elem, char **splitted)
 	// if (amb_lgh >= 0 && amb_lgh <= 1)
 	// 	elem->ambient_light = amb_lgh;
 	// set ratio scope error later with else
-	elem->amb_light.amb_light = atof(splitted[1]);
+	elem->amb_light.amb_light = ft_atof(splitted[1]);
 	elem->amb_light.color = set_rt_color(splitted[2]);
 	elem->amb_light.declared = true;
 }
@@ -32,14 +32,14 @@ void	set_rt_camera(t_elem *elem, char **splitted)
 void	set_rt_light(t_elem *elem, char **splitted)
 {
 	elem->light.l_p = set_rt_point(splitted[1]);
-	elem->light.brightness = atof(splitted[2]);
+	elem->light.brightness = ft_atof(splitted[2]);
 	elem->light.color = set_rt_color(splitted[3]);
 }
 
 void	set_rt_sphere(t_elem *elem, char **splitted)
 {
 	elem->sphere.center = set_rt_point(splitted[1]);
-	elem->sphere.diameter = atof(splitted[2]);
+	elem->sphere.diameter = ft_atof(splitted[2]);
 	elem->sphere.color = set_rt_color(splitted[3]);
 }
 
@@ -62,8 +62,8 @@ void	set_rt_cylinder(t_elem *elem, char **splitted)
 {
 	elem->cylinder.center = set_rt_point(splitted[1]);
 	elem->cylinder.orient_vect = set_rt_point(splitted[2]);
-	elem->cylinder.diameter = atof(splitted[3]);
-	elem->cylinder.height = atof(splitted[4]);
+	elem->cylinder.diameter = ft_atof(splitted[3]);
+	elem->cylinder.height = ft_atof(splitted[4]);
 	elem->cylinder.color = set_rt_color(splitted[5]);
 }
 

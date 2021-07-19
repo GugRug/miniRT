@@ -12,10 +12,7 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 						scene->amb_light.amb_light);
 	if (!(ray->intersect))
 		return (0);
-	// print_test(ray->color);
 	color = color_product(ray->color, amb);
-	// if (color != 0)
-	// 	printf("raytrace Color:   |%x|\n", color);
 	while (lgt)
 	{
 	// if (color > 0)
@@ -24,33 +21,41 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 		// printf("Color: |%x|\n", lgt->light.color);
 		light->color = color_scale(light->color,
 									light->brightness);
-		if (light_intersect(ray, light, scene))
+		if (light_intercept(ray, light, scene))
+		{
+			printf("Color before: |%x|\n", color);
 			color = color_add(color, light->color);
+			printf("------ Light intersect is true! ------\n");
+			printf("Color after: |%x|\n", color);
+		}
 		lgt = lgt->next;
 	}
 	return (color);
 }
 
-bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene)
+bool	light_intercept(t_ray *ray, t_light *light, t_scene *scene)
 {
 	t_ray	light_ray;
 	double	r2;
 	double	gain;
 
-	light_ray.dir = v_sub(ray->dir, light->l_p);
-	light_ray.orig = light->l_p;
+	// light_ray.dir = v_sub(ray->dir, light->l_p);
+	light_ray.orig = v_add(ray->pos, v_scale(ray->normal, EPSILON));
+	light_ray.dir = v_norm(v_sub(light->l_p, light_ray.orig));
 	intersect(&light_ray, scene);
-	if(light_ray.intersect)
+	if(!light_ray.intersect)
 	{
+		printf("------ Light intersect is true! ------\n");
 		light_ray.norm = v_norm(light_ray.dir);
 		r2 = v_len_sqred(light_ray.norm);
-		gain = v_dot(light_ray.norm, ray->norm);
+		gain = v_dot(light_ray.norm, ray->normal);
 		if (gain < 0)
 			gain = 0;
 		gain *= 1000;
 		light->brightness = (light->brightness * gain) /
 							(4.0 * FT_M_PI * r2);
-		light->color = color_product(color_scale(ray->color, light->brightness), light->color);
+		light->color = color_product(color_scale(ray->color,
+						light->brightness), light->color);
 	}
 	return (light_ray.intersect);
 }
