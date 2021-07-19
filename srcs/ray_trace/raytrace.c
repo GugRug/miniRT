@@ -3,6 +3,7 @@
 t_color	raytrace(t_ray *ray, t_scene *scene)
 {
 	t_color	color;
+	t_color comp_color = 0;
 	t_color	amb;
 	t_elem	*lgt;
 	t_light	*light;
@@ -15,47 +16,41 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 	color = color_product(ray->color, amb);
 	while (lgt)
 	{
-	// if (color > 0)
-	// 	printf("Color: |%x|\n", color);
+		// printf("Color befr: |%x| - \n", lgt->light.color);
 		light = &(lgt->light);
-		// printf("Color: |%x|\n", lgt->light.color);
-		light->color = color_scale(light->color,
-									light->brightness);
-		if (light_intercept(ray, light, scene))
+		if (!light_intersect(ray, light, scene, &comp_color))
 		{
-			printf("Color before: |%x|\n", color);
-			color = color_add(color, light->color);
-			printf("------ Light intersect is true! ------\n");
-			printf("Color after: |%x|\n", color);
+			// printf("Color before: |%x|\n", comp_color);
+			color = color_add(color, comp_color);
 		}
 		lgt = lgt->next;
 	}
 	return (color);
 }
 
-bool	light_intercept(t_ray *ray, t_light *light, t_scene *scene)
+bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color)
 {
 	t_ray	light_ray;
+	t_vect	reflect_ray;
 	double	r2;
 	double	gain;
+	double	brightness;
 
-	// light_ray.dir = v_sub(ray->dir, light->l_p);
 	light_ray.orig = v_add(ray->pos, v_scale(ray->normal, EPSILON));
 	light_ray.dir = v_norm(v_sub(light->l_p, light_ray.orig));
 	intersect(&light_ray, scene);
 	if(!light_ray.intersect)
 	{
-		printf("------ Light intersect is true! ------\n");
-		light_ray.norm = v_norm(light_ray.dir);
-		r2 = v_len_sqred(light_ray.norm);
-		gain = v_dot(light_ray.norm, ray->normal);
+		reflect_ray = v_sub(light->l_p,ray->pos);
+		r2 = v_len_sqred(reflect_ray);
+		gain = v_dot(v_norm(reflect_ray), ray->normal);
 		if (gain < 0)
 			gain = 0;
 		gain *= 1000;
-		light->brightness = (light->brightness * gain) /
+		brightness = (light->brightness * gain) /
 							(4.0 * FT_M_PI * r2);
-		light->color = color_product(color_scale(ray->color,
-						light->brightness), light->color);
+		*color = color_product(color_scale(ray->color, brightness),
+							color_scale(light->color, light->brightness));
 	}
 	return (light_ray.intersect);
 }

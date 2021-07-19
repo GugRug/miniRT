@@ -152,7 +152,7 @@ void	ray_position(t_ray *ray);
 **	raytrace.c
 */
 t_color	raytrace(t_ray *ray, t_scene *scene);
-bool	light_intercept(t_ray *ray, t_light *light, t_scene *scene);
+bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color);
 void	intersect(t_ray *ray, t_scene *scene);
 t_ray	start_raytrace(t_scene *scene, double u, double v);
 
