@@ -161,7 +161,7 @@ t_ray	start_raytrace(t_scene *scene, double u, double v);
 */
 bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
 void	hit_sphere(t_elem *elem,t_ray *ray);
-// void	hit_plane(t_elem *elem,t_ray *ray);
+void	hit_plane(t_elem *elem,t_ray *ray);
 // void	hit_square(t_elem *elem,t_ray *ray);
 // void	hit_cylinder(t_elem *elem,t_ray *ray);
 // void	hit_triangle(t_elem *elem,t_ray *ray);

@@ -75,19 +75,12 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		{
 			ray = start_raytrace(scene, (double)(i)/canvas->width, (double)(j)/canvas->height);
 
-			if (i == 614 && j == 57)
+			if (i == 399 && j == 174)
 			{
-				printf("\n------ At i == 614 && j == 57! ------\n");
+				printf("\n------ At i == 399 && j == 174! ------\n");
 			}
 
 			color = raytrace(&ray, scene);
-			// color = ray.color;
-			// if (color > 0)
-			// 	printf("Color: |%x|\n", color);
-			// if (i == 469 && j == 199)
-			// 	printf("Color blue: |%x|\n", color);
-			// if (i == 499 && j == 277)
-			// 	printf("Color red: |%x|\n", color);
 			set_canvas_point(&(scene->canvas), i, j, color);
 			set_canvas_point(&(scene->canvas), 100, 200, 0xffffff);
 		}

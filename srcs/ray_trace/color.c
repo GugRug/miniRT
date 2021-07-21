@@ -4,27 +4,14 @@ static int	clamp(int x)
 {
 	if (x > 0xFF)
 		return (0xFF);
-	return (x < 0 ? 0 : x);
+	else if (x < 0)
+		return (0);
+	return (x);
 }
 
 t_color	color_conv(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
-}
-
-int		get_red(t_color rgb)
-{
-	return (rgb & (0xFF << 16));
-}
-
-int		get_green(t_color rgb)
-{
-	return (rgb & (0xFF << 8));
-}
-
-int		get_blue(t_color rgb)
-{
-	return (rgb & 0xFF);
 }
 
 int		color_check(int color)

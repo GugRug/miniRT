@@ -24,35 +24,45 @@ void	hit_sphere(t_elem *elem,t_ray *ray)
 	i = 0;
 	if (!hit_sphere_root(elem, ray, root))
 		return;
-	//print_test(4);
 	while (i < 2)
 	{
-		if (ray->dir.x > 1.0)
-		{
-			print_test(ray->dir.x);
-		}
 		if (ray->t > root[i] && root[i] > 0)
 		{
+			ray->color = elem->sphere.color;
 			ray->intersect = true;
 			ray->t = root[i];
 			ray_position(ray);
 			ray->normal = v_norm(v_sub(ray->pos, elem->sphere.center));
-			// ray->normal = v_norm(ray->dir);
-			ray->color = elem->sphere.color;
 		}
 		i++;
 	}
 }
 
-// void	hit_plane(t_elem *elem,t_ray *ray)
-// {
+void	hit_plane(t_elem *elem,t_ray *ray)
+{
+	double	t;
+	double	den;
 
-// }
+	den = v_dot(v_norm(ray->dir), elem->plane.orient_vect);
+	if (!den)
+		return;
+	t = v_dot(v_sub(elem->plane.f_p, ray->orig), elem->plane.orient_vect) / den;
+	if (ray->t > t && t > 0)
+	{
+		ray->color = elem->plane.color;
+		ray->intersect = true;
+		ray->t = t;
+		if (v_dot(ray->dir, elem->plane.orient_vect) > 0)
+			elem->plane.orient_vect = v_scale(elem->plane.orient_vect, -1);
+		ray_position(ray);
+		ray->normal = elem->plane.orient_vect;
+	}
+}
 
-// void	hit_square(t_elem *elem,t_ray *ray)
-// {
-
-// }
+void	hit_square(t_elem *elem,t_ray *ray)
+{
+	
+}
 
 // void	hit_cylinder(t_elem *elem,t_ray *ray)
 // {

@@ -61,12 +61,14 @@ void	intersect(t_ray *ray, t_scene *scene)
 	t_elem	*elem;
 
 	elem = scene->elem;
+	ray->t = INFINITY;
+	ray->intersect = false;
 	while (elem)
 	{
 		if (elem->type == SPHERE)
 			hit_sphere(elem, ray);
-		// else if (elem->type == PLANE)
-		// 	hit_plane(elem, ray);
+		else if (elem->type == PLANE)
+			hit_plane(elem, ray);
 		// else if (elem->type == SQUARE)
 		// 	hit_square(elem, ray);
 		// else if (elem->type == CYLINDER)
