@@ -37,10 +37,8 @@
 //TESTE.c
 void	main_teste();
 int		mouse_track(int button, int x, int y, t_window *window);
-void	draw_square(t_scene *scene, t_elem *sqr);
 int		write_test(void);
 int		print_test(double p);
-// int	render_next_frame(void *window);
 
 /*
 **	main.c
@@ -51,8 +49,8 @@ void	set_init_mlx(t_window *window, t_image *image);
 /*
 **	color.c
 */
-t_color		color_conv(int red, int green, int blue);
 int			clamp(int x);
+t_color		color_conv(int red, int green, int blue);
 t_color		color_add(t_color u, t_color v);
 t_color		color_scale(t_color rgb, double c);
 t_color		color_product(t_color u, t_color v);
@@ -100,6 +98,10 @@ void	set_rt_resolution(t_elem *elem, char **splitted);
 void	set_rt_ambient_lightining(t_elem *elem, char **splitted);
 void	set_rt_camera(t_elem *elem, char **splitted);
 void	set_rt_light(t_elem *elem, char **splitted);
+
+/*
+**	rt_elem_obj.c
+*/
 void	set_rt_sphere(t_elem *elem, char **splitted);
 void	set_rt_plane(t_elem *elem, char **splitted);
 void	set_rt_square(t_elem *elem, char **splitted);
@@ -112,6 +114,7 @@ void	set_rt_triangle(t_elem *elem, char **splitted);
 double	ft_atof(const char *str);
 t_coord	set_rt_point(char *str);
 int		set_rt_color(char *str);
+void	set_square_vertex(t_square *s);
 
 /*
 **	validate.c
@@ -124,15 +127,20 @@ bool	validate_rt_name(char *name);
 **	vector.c
 */
 t_coord	new_point(double x, double y, double z);
-t_vect	v_add(t_vect v, t_vect u);
-t_vect	v_sub(t_vect v, t_vect u);
 t_vect	v_scale(t_vect v, double f);
-t_vect	v_cross(t_vect v, t_vect u);
-t_vect	v_position(t_vect v, t_vect u, double t);
-double	v_dot(t_vect v, t_vect u);
 double	v_len(t_vect v);
 double	v_len_sqred(t_vect v);
 t_vect	v_norm(t_vect v);
+
+/*
+**	vector_2.c
+*/
+t_vect	v_position(t_vect v, t_vect u, double t);
+t_vect	v_add(t_vect v, t_vect u);
+t_vect	v_sub(t_vect v, t_vect u);
+t_vect	v_cross(t_vect v, t_vect u);
+double	v_dot(t_vect v, t_vect u);
+
 /*
 **	canvas.c
 */
@@ -162,15 +170,16 @@ t_ray	start_raytrace(t_scene *scene, double u, double v);
 bool	hit_sphere(t_elem *elem,t_ray *ray);
 bool	hit_plane(t_elem *elem,t_ray *ray);
 bool	hit_square(t_elem *elem,t_ray *ray);
-// bool	hit_cylinder(t_elem *elem,t_ray *ray);
+bool	hit_cylinder(t_elem *elem,t_ray *ray);
 bool	hit_triangle(t_elem *elem,t_ray *ray);
 
 /*
 **	hit_utils.c
 */
 bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);;
-bool	check_edge(t_vect to, t_vect from, t_vect pos, t_vect normal);;
-bool	check_all_edges(t_elem *elem, t_ray *ray);
+bool	is_inside(t_ray r, t_coord *v, unsigned int vertex);
+// bool	check_edge(t_vect to, t_vect from, t_vect pos, t_vect normal);;
+// bool	check_all_edges(t_elem *elem, t_ray *ray);
 
 /*
 **	camera.c

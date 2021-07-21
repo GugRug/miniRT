@@ -47,3 +47,18 @@ int		set_rt_color(char *str)
 	splitted = NULL;
 	return (color);
 }
+
+void	set_square_vertex(t_square *s)
+{
+	t_vect		i;
+	t_vect		j;
+
+	i = v_cross(s->normal, new_point(s->normal.z, s->normal.x, s->normal.y));
+	j = v_cross(s->normal, i);
+	i = v_scale(i, s->side / 2);
+	j = v_scale(j, s->side / 2);
+	s->vertex[0] = v_add(v_add(s->center, i), j);
+	s->vertex[1] = v_sub(v_add(s->center, i), j);
+	s->vertex[2] = v_sub(v_sub(s->center, i), j);
+	s->vertex[3] = v_add(v_sub(s->center, i), j);
+}

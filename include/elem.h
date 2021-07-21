@@ -23,7 +23,7 @@ typedef struct	s_amb_light
 typedef struct	s_camera
 {
 	t_coord		orig;
-	t_vect		orient_vect;
+	t_vect		normal;
 	double		fov;
 	t_vect		hor;
 	t_vect		ver;
@@ -47,15 +47,16 @@ typedef struct	s_sphere
 
 typedef struct	s_plane
 {
-	t_coord		f_p;
-	t_vect		orient_vect;
+	t_coord		point;
+	t_vect		normal;
 	int			color;
 }				t_plane;
 
 typedef struct	s_square
 {
 	t_coord		center;
-	t_vect		orient_vect;
+	t_vect		normal;
+	t_vect		vertex[4];
 	double		side;
 	int			color;
 }				t_square;
@@ -63,7 +64,7 @@ typedef struct	s_square
 typedef struct	s_cylinder
 {
 	t_coord		center;
-	t_coord		orient_vect;
+	t_coord		normal;
 	double		diameter;
 	double		height;
 	int			color;
@@ -71,9 +72,7 @@ typedef struct	s_cylinder
 
 typedef struct	s_triangle
 {
-	t_coord		f_p;
-	t_coord		s_p;
-	t_coord		t_p;
+	t_vect		vertex[3];
 	t_vect		normal;
 	int			color;
 
