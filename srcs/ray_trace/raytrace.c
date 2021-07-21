@@ -59,27 +59,26 @@ bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color)
 void	intersect(t_ray *ray, t_scene *scene)
 {
 	t_elem	*elem;
-
+	bool	hit;
 	elem = scene->elem;
+	
 	ray->t = INFINITY;
-	ray->intersect = false;
+	hit = false;
 	while (elem)
 	{
 		if (elem->type == SPHERE)
-			hit_sphere(elem, ray);
+			hit |= hit_sphere(elem, ray);
 		else if (elem->type == PLANE)
-			hit_plane(elem, ray);
-		// else if (elem->type == SQUARE)
-		// 	hit_square(elem, ray);
+			hit |= hit_plane(elem, ray);
+		else if (elem->type == SQUARE)
+			hit |= hit_square(elem, ray);
+		else if (elem->type == TRIANGLE)
+			hit |= hit_triangle(elem, ray);
 		// else if (elem->type == CYLINDER)
-		// 	hit_cylinder(elem, ray);
-		// else if (elem->type == TRIANGLE)
-		// 	hit_triangle(elem, ray);
+		// 	hit |= hit_cylinder(elem, ray);
 		elem = elem->next;
 	}
-	// if ((ray->intersect))
-	// 	ray_position(ray);
-	//print_test(42);
+	ray->intersect = hit;
 }
 
 t_ray	start_raytrace(t_scene *scene, double u, double v)

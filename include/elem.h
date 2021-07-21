@@ -48,14 +48,14 @@ typedef struct	s_sphere
 typedef struct	s_plane
 {
 	t_coord		f_p;
-	t_coord		orient_vect;
+	t_vect		orient_vect;
 	int			color;
 }				t_plane;
 
 typedef struct	s_square
 {
 	t_coord		center;
-	t_coord		orient_vect;
+	t_vect		orient_vect;
 	double		side;
 	int			color;
 }				t_square;
@@ -74,6 +74,7 @@ typedef struct	s_triangle
 	t_coord		f_p;
 	t_coord		s_p;
 	t_coord		t_p;
+	t_vect		normal;
 	int			color;
 
 }				t_triangle;

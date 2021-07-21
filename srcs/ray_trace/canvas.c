@@ -73,12 +73,12 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		j = canvas->height;
 		while (j-- > 0)
 		{
+			if (i == 360 && j == 29)
+			{
+				printf("\n------ At i == 360 && j == 29! ------\n");
+			}
 			ray = start_raytrace(scene, (double)(i)/canvas->width, (double)(j)/canvas->height);
 
-			if (i == 399 && j == 174)
-			{
-				printf("\n------ At i == 399 && j == 174! ------\n");
-			}
 
 			color = raytrace(&ray, scene);
 			set_canvas_point(&(scene->canvas), i, j, color);

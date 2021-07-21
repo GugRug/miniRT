@@ -51,13 +51,11 @@ void	set_init_mlx(t_window *window, t_image *image);
 /*
 **	color.c
 */
-t_color	color_conv(int red, int green, int blue);
-int		get_red(t_color rgb);
-int		get_green(t_color rgb);
-int		get_blue(t_color rgb);
-t_color	color_add(t_color u, t_color v);
-t_color	color_scale(t_color rgb, double c);
-t_color	color_product(t_color u, t_color v);
+t_color		color_conv(int red, int green, int blue);
+int			clamp(int x);
+t_color		color_add(t_color u, t_color v);
+t_color		color_scale(t_color rgb, double c);
+t_color		color_product(t_color u, t_color v);
 
 /*
 **	draw.c
@@ -69,6 +67,8 @@ void	draw_pixel(t_image *data, int x, int y, int color);
 */
 int		key_hook(int keycode, t_window *window);
 int		destroy_window(t_window *window);
+int		expose_hook(t_world *w);
+int		call_hook(t_world *world);
 
 /*
 **	elem.c
@@ -159,12 +159,18 @@ t_ray	start_raytrace(t_scene *scene, double u, double v);
 /*
 **	hit.c
 */
-bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);
-void	hit_sphere(t_elem *elem,t_ray *ray);
-void	hit_plane(t_elem *elem,t_ray *ray);
-// void	hit_square(t_elem *elem,t_ray *ray);
-// void	hit_cylinder(t_elem *elem,t_ray *ray);
-// void	hit_triangle(t_elem *elem,t_ray *ray);
+bool	hit_sphere(t_elem *elem,t_ray *ray);
+bool	hit_plane(t_elem *elem,t_ray *ray);
+bool	hit_square(t_elem *elem,t_ray *ray);
+// bool	hit_cylinder(t_elem *elem,t_ray *ray);
+bool	hit_triangle(t_elem *elem,t_ray *ray);
+
+/*
+**	hit_utils.c
+*/
+bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);;
+bool	check_edge(t_vect to, t_vect from, t_vect pos, t_vect normal);;
+bool	check_all_edges(t_elem *elem, t_ray *ray);
 
 /*
 **	camera.c

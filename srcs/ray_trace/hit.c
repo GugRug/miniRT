@@ -1,75 +1,128 @@
 #include "minirt.h"
 
-bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root)
-{
-	double	a;
-	double	b;
-	double	c;
-	t_vect	d;
-
-	d = v_sub(ray->orig, elem->sphere.center);
-	a = v_dot(ray->dir, ray->dir);
-	b = 2 * v_dot(ray->dir, d);
-	c = v_dot(d, d) - pow((elem->sphere.diameter)/2, 2);
-	if (baskara(a, b, c, root) >= 0)
-		return (true);
-	return (false);
-}
-
-void	hit_sphere(t_elem *elem,t_ray *ray)
+bool	hit_sphere(t_elem *elem,t_ray *ray)
 {
 	int		i;
 	double	root[2];
+	bool	hit;
 
 	i = 0;
+	hit = false;
 	if (!hit_sphere_root(elem, ray, root))
-		return;
+		return (hit);
 	while (i < 2)
 	{
 		if (ray->t > root[i] && root[i] > 0)
 		{
 			ray->color = elem->sphere.color;
-			ray->intersect = true;
 			ray->t = root[i];
 			ray_position(ray);
 			ray->normal = v_norm(v_sub(ray->pos, elem->sphere.center));
+			hit = true;
 		}
 		i++;
 	}
+	return (hit);
 }
 
-void	hit_plane(t_elem *elem,t_ray *ray)
+bool	hit_plane(t_elem *elem,t_ray *ray)
 {
+	// double	t;
+	// double	den;
+
+	// den = v_dot(v_norm(ray->dir), elem->plane.orient_vect);
+	// if (!den)
+	// 	return (false);
+	// t = v_dot(v_sub(elem->plane.f_p, ray->orig), elem->plane.orient_vect) / den;
+	// if (ray->t > t && t > EPSILON)
+	// {
+	// 	if (v_dot(ray->dir, elem->plane.orient_vect) > 0)
+	// 		elem->plane.orient_vect = v_scale(elem->plane.orient_vect, -1);
+	// 	ray->t = t;
+	// 	ray_position(ray);
+	// 	ray->normal = elem->plane.orient_vect;
+	// 	ray->color = elem->plane.color;
+	// 	return (true);
+	// }
+	// return (false);
+
 	double	t;
 	double	den;
 
 	den = v_dot(v_norm(ray->dir), elem->plane.orient_vect);
 	if (!den)
-		return;
+		return (false);
 	t = v_dot(v_sub(elem->plane.f_p, ray->orig), elem->plane.orient_vect) / den;
 	if (ray->t > t && t > 0)
 	{
 		ray->color = elem->plane.color;
-		ray->intersect = true;
 		ray->t = t;
 		if (v_dot(ray->dir, elem->plane.orient_vect) > 0)
 			elem->plane.orient_vect = v_scale(elem->plane.orient_vect, -1);
 		ray_position(ray);
 		ray->normal = elem->plane.orient_vect;
+		return (true);
 	}
+	return (false);
 }
 
-void	hit_square(t_elem *elem,t_ray *ray)
+bool	hit_square(t_elem *elem,t_ray *ray)
 {
-	
+	t_elem	temp_plane;
+	t_ray	temp_ray;
+	t_vect	dist;
+	double	border;
+
+
+	temp_plane.plane.f_p = elem->square.center;
+	temp_plane.plane.orient_vect = elem->square.orient_vect;
+	temp_plane.plane.color = elem->square.color;
+	temp_ray.orig = ray->orig;
+	temp_ray.dir = ray->dir;
+	temp_ray.t = ray->t;
+	dist = v_sub(ray->pos, elem->square.center);
+	border = elem->square.side / 2;
+	if (hit_plane(&temp_plane, &temp_ray)
+					&& (fabs(dist.x) <= border)
+					&& (fabs(dist.y) <= border)
+					&& (fabs(dist.z) <= border))
+	{
+		ray->color = elem->square.color;
+		ray->normal = elem->square.orient_vect;
+		ray->t = temp_ray.t;
+		ray_position(ray);
+		return (true);
+	}
+	return (false);
+
+
 }
 
-// void	hit_cylinder(t_elem *elem,t_ray *ray)
+// bool	hit_cylinder(t_elem *elem,t_ray *ray)
 // {
 
 // }
 
-// void	hit_triangle(t_elem *elem,t_ray *ray)
-// {
 
-// }
+bool	hit_triangle(t_elem *elem,t_ray *ray)
+{
+	t_elem	temp_plane;
+	t_ray	temp_ray;
+	
+	temp_plane.plane.f_p = elem->triangle.f_p;
+	temp_plane.plane.orient_vect = elem->triangle.normal;
+	temp_plane.plane.color = elem->triangle.color;
+	temp_ray.orig = ray->orig;
+	temp_ray.dir = ray->dir;
+	temp_ray.t = ray->t;
+	if (hit_plane(&temp_plane, &temp_ray)
+		&& check_all_edges(elem, ray))
+	{
+		ray->color = elem->triangle.color;
+		ray->normal = elem->triangle.normal;
+		ray->t = temp_ray.t;
+		ray_position(ray);
+		return (true);
+	}
+	return (false);	
+}

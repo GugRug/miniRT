@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-static int	clamp(int x)
+int		clamp(int x)
 {
 	if (x > 0xFF)
 		return (0xFF);

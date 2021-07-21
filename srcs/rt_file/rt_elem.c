@@ -74,4 +74,7 @@ void	set_rt_triangle(t_elem *elem, char **splitted)
 	elem->triangle.s_p = set_rt_point(splitted[2]);
 	elem->triangle.t_p = set_rt_point(splitted[3]);
 	elem->triangle.color = set_rt_color(splitted[4]);
+	elem->triangle.normal = v_norm(v_cross(
+					v_sub(elem->triangle.s_p, elem->triangle.f_p), 
+					v_sub(elem->triangle.t_p, elem->triangle.f_p)));
 }

@@ -19,9 +19,9 @@ typedef enum	e_error{
 
 typedef struct	s_coord
 {
-	long double	x;
-	long double	y;
-	long double	z;
+	double	x;
+	double	y;
+	double	z;
 }				t_coord;
 
 typedef	t_coord	t_vect;

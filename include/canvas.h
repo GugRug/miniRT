@@ -34,6 +34,11 @@ typedef struct	s_image
 	int		endian;
 }				t_image;
 
+typedef struct	s_world
+{
+	t_window	*window;
+	t_image		*image;
+}				t_world;
 /*
 **	--------------- ARGS TYPEDEFS ---------------
 */

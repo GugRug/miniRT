@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
+	t_world 	world;
 	t_window	window;
 	t_image		image;
 	t_rt		rt;
@@ -10,20 +11,20 @@ int main(int argc, char **argv)
 	set_init(&window, &rt, &scene);
 	validate_args(argc, argv, window.rt);
 	set_init_mlx(&window, &image);
-	mlx_get_screen_size(window.mlx, &(window.rt->width),
-						&(window.rt->height));	//need this to correct camera
-	if (window.rt->scene->res.x > window.rt->width)
-		window.rt->scene->res.x = window.rt->width;
-	if (window.rt->scene->res.y > window.rt->height)
-		window.rt->scene->res.y = window.rt->height;
+
 	print_scene_elem(&image, window.rt->scene);
-	//main_test();
-	mlx_put_image_to_window(window.mlx, window.win, image.img, 0, 0);
+
+	world.window = &window;
+	world.image = &image;
+	call_hook(&world);
+	mlx_put_image_to_window(world.window->mlx, 
+	world.window->win, world.image->img, 0, 0);
 
 	//mlx_hook(window.win, 4, 1L << 2, print_test, &window);
-	mlx_hook(window.win, 33, 1L << 17, destroy_window, &window);
+	// mlx_hook(window.win, 33, 1L << 17, destroy_window, &window);
 	mlx_key_hook(window.win, key_hook, &window);
-	mlx_mouse_hook(window.win, mouse_track, &window);
+	// mlx_mouse_hook(window.win, mouse_track, &window);
+	// mlx_expose_hook(window.win, expose_hook, w, image);
 	//mlx_loop_hook(window.mlx, render_next_frame, &window);
 	mlx_loop(window.mlx);
 	return (0);
@@ -46,12 +47,18 @@ void	set_init_mlx(t_window *window, t_image *image)
 	window->width = window->rt->scene->res.x;
 	window->height = window->rt->scene->res.y;
 	window->mlx = mlx_init();
-	window->win = mlx_new_window(window->mlx, window->width, window->height, window->title);
+	window->win = mlx_new_window(window->mlx, window->width,
+							window->height, window->title);
 	image->width = window->rt->scene->res.x;
 	image->height = window->rt->scene->res.y;
 	window->rt->scene->canvas = new_canvas(window->width, window->height);
 	image->img = mlx_new_image(window->mlx, image->width, image->height);
 	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel),
-	&(image->line_length), &(image->endian));
-	mlx_put_image_to_window(window->mlx, window->win, image->img, 0, 0);
+								&(image->line_length), &(image->endian));
+	mlx_get_screen_size(window->mlx, &(window->rt->width),
+						&(window->rt->height));
+	if (window->rt->scene->res.x > window->rt->width)
+		window->rt->scene->res.x = window->rt->width;
+	if (window->rt->scene->res.y > window->rt->height)
+		window->rt->scene->res.y = window->rt->height;
 }
