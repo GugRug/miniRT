@@ -16,11 +16,11 @@ int		destroy_window(t_window *window)
 	return (0);
 }
 
-// int		expose_hook(t_world *w)
-// {
-// 	return(mlx_put_image_to_window(w->ptr, w->window,
-// 									w->image, 0, 0));
-// }
+int		expose_hook(t_world *w)
+{
+	return(mlx_put_image_to_window(w->window->mlx, w->window->win,
+									w->image->img, 0, 0));
+}
 
 int		call_hook(t_world *world)
 {
