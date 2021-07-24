@@ -11,7 +11,7 @@ bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root)
 	a = v_dot(ray->dir, ray->dir);
 	b = 2 * v_dot(ray->dir, d);
 	c = v_dot(d, d) - pow((elem->sphere.diameter)/2, 2);
-	if (baskara(a, b, c, root) >= 0)
+	if (bhaskara(a, b, c, root) >= 0)
 		return (true);
 	return (false);
 }
@@ -39,27 +39,28 @@ bool	is_inside(t_ray r, t_coord *v, unsigned int vertex)
 	return (in);
 }
 
-// bool	check_edge(t_vect to, t_vect from, t_vect pos, t_vect normal)
-// {
-// 	t_vect	edge;
-// 	t_vect	vec_p;
-// 	bool check;
+double	cy_calc(t_ray ray, t_elem cy, double *y, bool ret[2])
+{
+	t_coord	v[2];
+	t_coord	v_cy2ray;
+	double	time[2];
+	double	dist[2];
 
-// 	edge = v_sub(to, from);
-// 	vec_p = v_sub(pos, from);
-// 	check = (v_dot(normal, v_cross(edge, vec_p)) >= EPSILON);
-// 	return (check);
-// }
-
-// bool	check_all_edges(t_elem *elem, t_ray *ray)
-// {
-// 	bool	check;
-
-// 	check = ((check_edge(elem->triangle.vertex[1], 
-// 		elem->triangle.vertex[0],ray->pos, elem->triangle.normal))
-// 		&& (check_edge(elem->triangle.vertex[2],
-// 		elem->triangle.vertex[1],ray->pos, elem->triangle.normal))
-// 		&& (check_edge(elem->triangle.vertex[0],
-// 		elem->triangle.vertex[2],ray->pos, elem->triangle.normal)));
-// 	return (check);
-// }
+	v[0] = v_sub(ray.dir, v_scale(cy.cylinder.normal, v_dot(ray.dir, cy.cylinder.normal)));
+	v[1] = v_sub(v_sub(ray.orig, cy.cylinder.center),
+			v_scale(cy.cylinder.normal, v_dot(v_sub(ray.orig, cy.cylinder.center), cy.cylinder.normal)));
+	bhaskara(v_len_sqred(v[0]), 2 * v_dot(v[0], v[1]),
+				v_len_sqred(v[1]) - pow(cy.cylinder.diameter / 2, 2), time);
+	v_cy2ray = v_sub(cy.cylinder.center, ray.orig);
+	dist[0] = v_dot(cy.cylinder.normal, v_sub(v_scale(ray.dir, time[0]), v_cy2ray));
+	dist[1] = v_dot(cy.cylinder.normal, v_sub(v_scale(ray.dir, time[1]), v_cy2ray));
+	ret[0] = (dist[0] >= 0 && dist[0] <= cy.cylinder.height && time[0] > EPSILON);
+	ret[1] = (dist[1] >= 0 && dist[1] <= cy.cylinder.height && time[1] > EPSILON);
+	if (!ret[0] && ret[1])
+	{
+		*y = dist[1];
+		return (time[1]);
+	}
+	*y = dist[0];
+	return (time[0]);
+}

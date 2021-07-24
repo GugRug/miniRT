@@ -27,25 +27,6 @@ bool	hit_sphere(t_elem *elem,t_ray *ray)
 
 bool	hit_plane(t_elem *elem,t_ray *ray)
 {
-	// double	t;
-	// double	den;
-
-	// den = v_dot(v_norm(ray->dir), elem->plane.normal);
-	// if (!den)
-	// 	return (false);
-	// t = v_dot(v_sub(elem->plane.point, ray->orig), elem->plane.normal) / den;
-	// if (ray->t > t && t > EPSILON)
-	// {
-	// 	if (v_dot(ray->dir, elem->plane.normal) > 0)
-	// 		elem->plane.normal = v_scale(elem->plane.normal, -1);
-	// 	ray->t = t;
-	// 	ray_position(ray);
-	// 	ray->normal = elem->plane.normal;
-	// 	ray->color = elem->plane.color;
-	// 	return (true);
-	// }
-	// return (false);
-
 	double	t;
 	double	den;
 
@@ -95,17 +76,31 @@ bool	hit_square(t_elem *elem,t_ray *ray)
 
 }
 
-// bool	hit_cylinder(t_elem *elem,t_ray *ray)
-// {
+bool	hit_cylinder(t_elem *elem,t_ray *ray)
+{
+	bool		ret[2];
+	double		time;
+	double		y;
 
-// }
-
+	time = cy_calc(*ray, *elem, &y, ret);
+	if ((ret[0] || ret[1]) && ray->t > time && time > EPSILON)
+	{
+		ray->t = time;
+		ray_position(ray);
+		ray->normal = v_norm(v_sub(ray->pos,
+				v_add(v_scale(elem->cylinder.normal, y), elem->cylinder.center)));
+		if (ret[0] == false & ret[1] == true)
+			ray->normal = v_scale(ray->normal, -1);
+		ray->color = elem->cylinder.color;
+	}
+	return (ret[0] || ret[1]);
+}
 
 bool	hit_triangle(t_elem *elem,t_ray *ray)
 {
 	t_elem	temp_plane;
 	t_ray	temp_ray;
-	
+
 	temp_plane.plane.point = elem->triangle.vertex[0];
 	temp_plane.plane.normal = elem->triangle.normal;
 	temp_plane.plane.color = elem->triangle.color;
@@ -121,30 +116,5 @@ bool	hit_triangle(t_elem *elem,t_ray *ray)
 		ray_position(ray);
 		return (true);
 	}
-	return (false);	
+	return (false);
 }
-
-
-// bool	hit_triangle(t_elem *elem,t_ray *ray)
-// {
-// 	bool			hit;
-// 	t_ray			r;
-// 	t_plane			pl;
-// 	t_elem			plane;
-
-// 	hit = false;
-// 	pl.point = elem->triangle.vertex[0];
-// 	pl.normal = elem->triangle.normal;
-// 	pl.color = elem->triangle.color;
-// 	plane.plane = pl;
-// 	r.orig = ray->orig;
-// 	r.dir = ray->dir;
-// 	r.t = ray->t;
-// 	ray_position(&r);
-// 	if (hit_plane(&plane, &r) && is_inside(r, elem->triangle.vertex, 3))
-// 	{
-// 		*ray = r;
-// 		hit = true;
-// 	}
-// 	return (hit);
-// }

@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	world.window = &window;
 	world.image = &image;
 	call_hook(&world);
-	// mlx_put_image_to_window(world.window->mlx, 
+	// mlx_put_image_to_window(world.window->mlx,
 	// world.window->win, world.image->img, 0, 0);
 	mlx_expose_hook(window.win, expose_hook, &world);
 	mlx_key_hook(window.win, key_hook, &window);
@@ -44,21 +44,24 @@ void	set_init(t_window *window, t_rt *rt, t_scene *scene)
 
 void	set_init_mlx(t_window *window, t_image *image)
 {
-	window->width = window->rt->scene->res.x;
-	window->height = window->rt->scene->res.y;
-	window->mlx = mlx_init();
-	window->win = mlx_new_window(window->mlx, window->width,
-							window->height, window->title);
-	image->width = window->rt->scene->res.x;
-	image->height = window->rt->scene->res.y;
-	window->rt->scene->canvas = new_canvas(window->width, window->height);
-	image->img = mlx_new_image(window->mlx, image->width, image->height);
-	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel),
-								&(image->line_length), &(image->endian));
+	if(!(window->mlx = mlx_init()))
+		message_and_exit(E_SYS, NULL);
 	mlx_get_screen_size(window->mlx, &(window->rt->width),
 						&(window->rt->height));
 	if (window->rt->scene->res.x > window->rt->width)
 		window->rt->scene->res.x = window->rt->width;
 	if (window->rt->scene->res.y > window->rt->height)
 		window->rt->scene->res.y = window->rt->height;
+	window->width = window->rt->scene->res.x;
+	window->height = window->rt->scene->res.y;
+	if(!(window->win = mlx_new_window(window->mlx, window->width,
+		window->height, window->title)))
+		message_and_exit(E_SYS, NULL);
+	image->width = window->rt->scene->res.x;
+	image->height = window->rt->scene->res.y;
+	window->rt->scene->canvas = new_canvas(window->width, window->height);
+	if(!(image->img = mlx_new_image(window->mlx, image->width, image->height)))
+		message_and_exit(E_SYS, NULL);
+	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel),
+								&(image->line_length), &(image->endian));
 }

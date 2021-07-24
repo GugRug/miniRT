@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 15:40:21 by gumartin          #+#    #+#             */
-/*   Updated: 2021/05/12 17:35:51 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/24 11:35:55 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,21 @@
 
 # include "minirt.h"
 
+typedef enum	e_error{
+	E_SYS,
+	E_N_ARGS,
+	E_C_ARGS,
+	E_FILE,
+	E_R_A_FILE,
+	MAX_ERROR
+}				t_error;
+
+static char	*g_error[MAX_ERROR] = {
+	"System error",
+	"Incorect number of arguments, need a (.rt) file as first argument and the (--save) as second argument is optional.",
+	"Incorect argument, check if (.rt) file as first argument and the optional (--save) as second",
+	"No file finded, check the name and the path to it again",
+	"Resolution and Ambient light need to be especified exactly once each at the (.rt) file",
+};
 
 #endif

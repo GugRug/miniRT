@@ -13,10 +13,6 @@ typedef enum	e_type {
 	TRIANGLE
 }				t_type;
 
-typedef enum	e_error{
-	ERROR_CODE
-}				t_error;
-
 typedef struct	s_coord
 {
 	double	x;

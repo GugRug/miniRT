@@ -16,13 +16,9 @@ t_color	raytrace(t_ray *ray, t_scene *scene)
 	color = color_product(ray->color, amb);
 	while (lgt)
 	{
-		// printf("Color befr: |%x| - \n", lgt->light.color);
 		light = &(lgt->light);
 		if (!light_intersect(ray, light, scene, &comp_color))
-		{
-			// printf("Color before: |%x|\n", comp_color);
 			color = color_add(color, comp_color);
-		}
 		lgt = lgt->next;
 	}
 	return (color);
@@ -61,7 +57,7 @@ void	intersect(t_ray *ray, t_scene *scene)
 	t_elem	*elem;
 	bool	hit;
 	elem = scene->elem;
-	
+
 	ray->t = INFINITY;
 	hit = false;
 	while (elem)
@@ -74,8 +70,8 @@ void	intersect(t_ray *ray, t_scene *scene)
 			hit |= hit_square(elem, ray);
 		else if (elem->type == TRIANGLE)
 			hit |= hit_triangle(elem, ray);
-		// else if (elem->type == CYLINDER)
-		// 	hit |= hit_cylinder(elem, ray);
+		else if (elem->type == CYLINDER)
+			hit |= hit_cylinder(elem, ray);
 		elem = elem->next;
 	}
 	ray->intersect = hit;

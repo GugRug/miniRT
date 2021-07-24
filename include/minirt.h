@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/18 09:47:20 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/24 11:26:30 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <errno.h>
 # include "libft.h"
 # include "mlx.h"
 # include "elem.h"
 # include "canvas.h"
+# include "validate_args.h"
 
 # define KEY_ESC	0xff1b
 # define KEY_C		0x63
@@ -153,7 +155,7 @@ void		set_canvas(t_canvas *canvas, t_scene *scene);
 **	ray.c
 */
 t_ray	new_ray(t_coord orig, t_vect dir);
-double	baskara(double a, double b, double c, double *root);
+double	bhaskara(double a, double b, double c, double *root);
 void	ray_position(t_ray *ray);
 
 /*
@@ -178,12 +180,16 @@ bool	hit_triangle(t_elem *elem,t_ray *ray);
 */
 bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root);;
 bool	is_inside(t_ray r, t_coord *v, unsigned int vertex);
-// bool	check_edge(t_vect to, t_vect from, t_vect pos, t_vect normal);;
-// bool	check_all_edges(t_elem *elem, t_ray *ray);
+double	cy_calc(t_ray ray, t_elem cy, double *y, bool ret[2]);
 
 /*
 **	camera.c
 */
 void	init_camera(t_camera *camera, t_scene *scene);
+
+/*
+**	error.c
+*/
+void	message_and_exit(t_error code, char *str);
 
 #endif

@@ -27,6 +27,7 @@ void	set_rt_cylinder(t_elem *elem, char **splitted)
 {
 	elem->cylinder.center = set_rt_point(splitted[1]);
 	elem->cylinder.normal = set_rt_point(splitted[2]);
+	elem->cylinder.normal = v_norm(elem->cylinder.normal);
 	elem->cylinder.diameter = ft_atof(splitted[3]);
 	elem->cylinder.height = ft_atof(splitted[4]);
 	elem->cylinder.color = set_rt_color(splitted[5]);
@@ -39,6 +40,6 @@ void	set_rt_triangle(t_elem *elem, char **splitted)
 	elem->triangle.vertex[2] = set_rt_point(splitted[3]);
 	elem->triangle.color = set_rt_color(splitted[4]);
 	elem->triangle.normal = v_norm(v_cross(
-					v_sub(elem->triangle.vertex[1], elem->triangle.vertex[0]), 
-					v_sub(elem->triangle.vertex[2], elem->triangle.vertex[0])));
+				v_sub(elem->triangle.vertex[1], elem->triangle.vertex[0]),
+				v_sub(elem->triangle.vertex[2], elem->triangle.vertex[0])));
 }

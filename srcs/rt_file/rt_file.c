@@ -11,13 +11,17 @@ void	set_rt(t_rt *rt)
 	while (line && gnl > 0)
 	{
 		element = set_rt_line_element(line);
-		// if (element->type == AMBIENT_LIGHTINING)
-		// 	print_test(rt->scene->amb_light.amb_light);
 		gnl = get_next_line(rt->fd, &line);
 		if (gnl <= 0)
 			free(line);
 		distrib_elem(rt->scene, element);
 	}
+	if (!(rt->scene->res.declared
+		&& rt->scene->amb_light.declared))
+	{
+		message_and_exit(E_R_A_FILE, NULL);
+	}
+
 	//resolution implement
 }
 

@@ -13,7 +13,7 @@ t_ray	new_ray(t_coord orig, t_vect dir)
 	return (ray);
 }
 
-double	baskara(double a, double b, double c, double *root)
+double	bhaskara(double a, double b, double c, double *root)
 {
 	double	delta;
 	double	temp;

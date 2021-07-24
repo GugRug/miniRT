@@ -15,8 +15,8 @@ void	print_scene_elem(t_image *img, t_scene *scene)
 	print_canvas(&(scene->canvas), img);
 }
 
-void	select_scene_elem(t_scene *scene, t_elem *elem)
-{
-		if (elem->type == SQUARE)
-			draw_square(scene, elem);
-}
+// void	select_scene_elem(t_scene *scene, t_elem *elem)
+// {
+// 		if (elem->type == SQUARE)
+// 			draw_square(scene, elem);
+// }
