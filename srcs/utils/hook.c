@@ -3,7 +3,7 @@
 int		key_hook(int keycode, t_world *w)
 {
 	if (keycode == KEY_ESC)
-		destroy_window(w->window);
+		free_all(w);
 	if ((keycode == KEY_A) || (keycode == KEY_D))
 		change_camera(keycode, w);
 	return (1);
@@ -29,7 +29,7 @@ int		call_hook(t_world *world)
 
 	x = (world->window);
 
-	mlx_hook(x->win, 33, 1L << 17, destroy_window, x);
+	mlx_hook(x->win, 33, 1L << 17, free_all, world);
 	mlx_key_hook(x->win, key_hook, world);
 	mlx_mouse_hook(x->win, mouse_track, x);
 	// mlx_hook(x->win, 2, 1L << 0, key_hook, x);

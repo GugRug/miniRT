@@ -36,7 +36,7 @@ void	change_camera(int keycode, t_world *w)
 		w->window->rt->scene->camera = w->window->rt->scene->camera->prev;
 	if (keycode == KEY_D)
 		w->window->rt->scene->camera = w->window->rt->scene->camera->next;
-	print_scene_elem(w->image, w->window->rt->scene);
+	print_scene_elem(w->image, w->window->rt);
 	mlx_put_image_to_window(w->window->mlx, w->window->win,
 									w->image->img, 0, 0);
 }

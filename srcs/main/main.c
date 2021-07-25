@@ -8,16 +8,16 @@ int main(int argc, char **argv)
 	t_rt		rt;
 	t_scene		scene;
 
+	world.window = &window;
+	world.image = &image;
 	set_init(&window, &rt, &scene);
 	validate_args(argc, argv, window.rt);
 	set_init_mlx(&window, &image);
 	init_camera(&(window.rt->scene->camera->camera), &scene);
-	print_scene_elem(&image, window.rt->scene);
-
-	world.window = &window;
-	world.image = &image;
+	print_scene_elem(&image, window.rt);
+	if (rt.save)
+		return (0);
 	call_hook(&world);
-	//mlx_loop_hook(window.mlx, render_next_frame, &window);
 	return (0);
 }
 

@@ -44,3 +44,19 @@ t_elem	*lst_elem_last(t_elem *lst)
 		lst = lst->next;
 	return (lst);
 }
+
+void	lst_elem_clear(t_elem **lst)
+{
+	t_elem	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = NULL;
+		*lst = tmp;
+	}
+	*lst = NULL;
+}

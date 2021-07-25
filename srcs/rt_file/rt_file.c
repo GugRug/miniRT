@@ -6,6 +6,7 @@ void	set_rt(t_rt *rt)
 	int		gnl;
 	t_elem	*element;
 
+	gnl = 0;
 	gnl = get_next_line(rt->fd, &line);
 	clean_extra_space(line);
 	while (line && gnl > 0)
@@ -62,7 +63,7 @@ t_elem	*set_rt_line_element(char *line)
 	{
 		splitted = ft_split(line, ' ');
 		set_rt_element_content(element, splitted);
-		free(splitted);
+		free_array(splitted);
 	}
 	else if (*line && *line != '#')
 		message_and_exit(E_INV_ELEM, NULL);

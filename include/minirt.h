@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/25 02:50:37 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 05:53:08 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "elem.h"
 # include "canvas.h"
 # include "validate_args.h"
+# include "bitmap.h"
 
 # define KEY_ESC	0xff1b
 # define KEY_A		0x61
@@ -78,11 +79,12 @@ void	lst_elem_add_back(t_elem **lst, t_elem *new);
 t_elem	*lst_elem_new(t_type type);
 void	lst_elem_cut(t_elem *elem);
 t_elem	*lst_elem_last(t_elem *lst);
+void	lst_elem_clear(t_elem **lst);
 
 /*
 **	scene.c
 */
-void	print_scene_elem(t_image *img, t_scene *scene);
+void	print_scene_elem(t_image *img, t_rt *rt);
 void	select_scene_elem(t_scene *scene, t_elem *elem);
 
 /*
@@ -207,6 +209,12 @@ bool	valid_int(const char *str);
 **	clean.c
 */
 void	free_array(char **array);
+int		free_all(t_world *w);
 
+/*
+** bitmap.c
+*/
+int			export_bitmap(char *filename, int width,
+							int height, t_image img);
 
 #endif
