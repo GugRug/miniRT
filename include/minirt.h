@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/24 23:10:50 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 02:50:37 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 # include "validate_args.h"
 
 # define KEY_ESC	0xff1b
+# define KEY_A		0x61
 # define KEY_C		0x63
-
+# define KEY_D		0x64
 # define EPSILON	0.0001
 # define FT_M_PI	3.14159265358979323846
 
@@ -65,7 +66,7 @@ void	draw_pixel(t_image *data, int x, int y, int color);
 /*
 **	hook.c
 */
-int		key_hook(int keycode, t_window *window);
+int		key_hook(int keycode, t_world *world);
 int		destroy_window(t_window *window);
 int		expose_hook(t_world *w);
 int		call_hook(t_world *world);
@@ -186,6 +187,7 @@ double	cy_calc(t_ray ray, t_elem cy, double *y, bool ret[2]);
 **	camera.c
 */
 void	init_camera(t_camera *camera, t_scene *scene);
+void	change_camera(int keycode, t_world *w);
 
 /*
 **	error.c
@@ -196,10 +198,15 @@ void	message_and_exit(t_error code, char *str);
 **	validate_utils.c
 */
 int		strarray_len(char **str);
-void	free_array(char **array);
 bool	validate_unit_range(double a, double b, double c);
 bool	validate_posit(double a, double b, double c);
 bool	valid_float(const char *str);
 bool	valid_int(const char *str);
+
+/*
+**	clean.c
+*/
+void	free_array(char **array);
+
 
 #endif

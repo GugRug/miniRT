@@ -23,6 +23,8 @@ void	set_rt(t_rt *rt)
 	{
 		message_and_exit(E_R_A_FILE, NULL);
 	}
+	rt->scene->camera->prev = lst_elem_last(rt->scene->camera);
+	lst_elem_last(rt->scene->camera)->next = rt->scene->camera;
 }
 
 void	distrib_elem(t_scene *scene, t_elem *elem)

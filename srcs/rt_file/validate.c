@@ -15,7 +15,6 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 	else
 		rt->save = false;
 	set_rt(rt);
-	// set_unique_elements(&rt);
 }
 
 void	set_unique_elements(t_scene *scene, t_elem *elem)

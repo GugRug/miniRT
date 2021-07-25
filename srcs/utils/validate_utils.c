@@ -10,21 +10,6 @@ int		strarray_len(char **str)
 	return (i);
 }
 
-void	free_array(char **array)
-{
-	unsigned	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
-	}
-	free(array);
-	array = NULL;
-}
-
 bool	validate_unit_range(double a, double b, double c)
 {
 	if (a >= -1 && b >= -1 && c >= -1

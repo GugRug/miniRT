@@ -10,7 +10,7 @@ void	print_scene_elem(t_image *img, t_scene *scene)
 	// 	select_scene_elem(scene, lst_pointer);
 	// 	lst_pointer = lst_pointer->next;
 	// }
-	init_camera(&(scene->camera->camera), scene);
+
 	set_canvas(&(scene->canvas), scene);
 	print_canvas(&(scene->canvas), img);
 }

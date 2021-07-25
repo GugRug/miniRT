@@ -35,10 +35,8 @@ void	set_canvas_point(t_canvas *canvas, int x, int y, int color)
 	if (canvas->height >= y && y >= 0 &&
 		canvas->width >= x && x >= 0)
 		{
-			canvas->canv[x][(canvas->height - y)] = color;
+			canvas->canv[x][(canvas->height - 1 - y)] = color;
 		}
-	else
-		return; //error
 }
 
 
@@ -73,16 +71,14 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		j = canvas->height;
 		while (j-- > 0)
 		{
-			if (i == 456 && j == 200)
-			{
-				printf("\n------ At (i == 456 && j == 200! ------\n");
-			}
-			ray = start_raytrace(scene, (double)(i)/canvas->width, (double)(j)/canvas->height);
-
-
+			ray = start_raytrace(scene, (double)(i)/canvas->width,
+										(double)(j)/canvas->height);
 			color = raytrace(&ray, scene);
 			set_canvas_point(&(scene->canvas), i, j, color);
-			set_canvas_point(&(scene->canvas), 100, 200, 0xffffff);
 		}
 	}
 }
+			// if (i == 456 && j == 200)
+			// {
+			// 	printf("\n------ At (i == 456 && j == 200! ------\n");
+			// }

@@ -11,22 +11,13 @@ int main(int argc, char **argv)
 	set_init(&window, &rt, &scene);
 	validate_args(argc, argv, window.rt);
 	set_init_mlx(&window, &image);
-
+	init_camera(&(window.rt->scene->camera->camera), &scene);
 	print_scene_elem(&image, window.rt->scene);
 
 	world.window = &window;
 	world.image = &image;
 	call_hook(&world);
-	// mlx_put_image_to_window(world.window->mlx,
-	// world.window->win, world.image->img, 0, 0);
-	mlx_expose_hook(window.win, expose_hook, &world);
-	mlx_key_hook(window.win, key_hook, &window);
-
-	//mlx_hook(window.win, 4, 1L << 2, print_test, &window);
-	// mlx_hook(window.win, 33, 1L << 17, destroy_window, &window);
-	// mlx_mouse_hook(window.win, mouse_track, &window);
 	//mlx_loop_hook(window.mlx, render_next_frame, &window);
-	mlx_loop(window.mlx);
 	return (0);
 }
 
