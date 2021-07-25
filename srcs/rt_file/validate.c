@@ -8,7 +8,8 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 		message_and_exit(E_N_ARGS, NULL);
 	if (!validate_rt_name(argv[1]))
 		message_and_exit(E_C_ARGS, NULL);
-	if ((rt->fd = open(argv[1], O_RDONLY)) < 0)
+	rt->fd = open(argv[1], O_RDONLY);
+	if ((rt->fd) < 0)
 		message_and_exit(E_FILE, NULL);
 	if (argc == 3 && !ft_strncmp(argv[2], "--save", 7))
 		rt->save = true;

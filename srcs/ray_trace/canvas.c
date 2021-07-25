@@ -78,7 +78,3 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		}
 	}
 }
-			// if (i == 456 && j == 200)
-			// {
-			// 	printf("\n------ At (i == 456 && j == 200! ------\n");
-			// }

@@ -10,14 +10,12 @@ double	ft_atof(const char *str)
 	signal = 1;
 	if(*splitted && **splitted == '-')
 		signal = -1;
-	n1 = (double)(ft_atoi(splitted[0]));
+	n1 = (double)(ft_atoi(splitted[0])) * signal;
 	n2 = 0;
 	if (splitted[1])
 		n2 = ft_atoi(splitted[1])/pow(10, ft_strlen(splitted[1]));
 	free_array(splitted);
-	if ((n1 + n2) > 0)
-		return ((n1 + n2) * signal);
-	return (n1 + n2);
+	return ((n1 + n2) * signal);
 }
 
 t_coord	set_rt_point(char *str)

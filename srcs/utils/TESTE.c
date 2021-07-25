@@ -80,7 +80,7 @@ int		mouse_track(int button, int x, int y, t_window *window)
 	if (button == 1)
 	{
 		mlx_mouse_get_pos(window->mlx, window->win, &x, &y);
-		printf("Cursor coords.: %4d x %4d\n", x,
+		printf("Cursor coords.: i == %d && j == %d\n", x,
 				window->rt->scene->res.y - y);
 	}
 	return (0);

@@ -28,17 +28,10 @@ int		call_hook(t_world *world)
 	t_window *x;
 
 	x = (world->window);
-
 	mlx_hook(x->win, 33, 1L << 17, free_all, world);
 	mlx_key_hook(x->win, key_hook, world);
 	mlx_mouse_hook(x->win, mouse_track, x);
-	// mlx_hook(x->win, 2, 1L << 0, key_hook, x);
-	// mlx_hook(x->win, 4, 1L << 2, print_test, x);
 	mlx_expose_hook(x->win, expose_hook, world);
 	mlx_loop(x->mlx);
-	// mlx_put_image_to_window(world->ptr,
-	// 		world->window, world->image, 0, 0);
-	// mlx_expose_hook(world->window->win, expose_hook, world);
-	// mlx_loop(x->mlx);
 	return (0);
 }

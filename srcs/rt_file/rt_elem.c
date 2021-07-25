@@ -39,7 +39,7 @@ void	set_rt_camera(t_elem *elem, char **splitted)
 	if (!valid_int(splitted[3]))
 		message_and_exit(E_CHAR_ARG, "Camera fov ratio bad CHAR detected");
 	elem->camera.fov = ft_atoi(splitted[3]);
-	if (!(elem->camera.fov > 0) || !(elem->camera.fov < 180))
+	if (!(elem->camera.fov >= 0) || !(elem->camera.fov <= 180))
 		message_and_exit(E_RANGE_ARG, "Camera fov ratio in range [0,180]");
 }
 

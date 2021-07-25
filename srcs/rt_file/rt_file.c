@@ -3,22 +3,24 @@
 void	set_rt(t_rt *rt)
 {
 	char	*line;
-	int		gnl;
 	t_elem	*element;
+	int		fd;
 
-	gnl = 0;
-	gnl = get_next_line(rt->fd, &line);
-	clean_extra_space(line);
-	while (line && gnl > 0)
+	fd = rt->fd;
+	line = NULL;
+	while (get_next_line(fd, &line))
 	{
-		element = set_rt_line_element(line);
+		if (*line && *line != '#')
+		{
+			// clean_extra_space(line);
+			element = set_rt_line_element(line);
+			if (element)
+				distrib_elem(rt->scene, element);
+		}
 		free(line);
-		gnl = get_next_line(rt->fd, &line);
-		if (gnl <= 0)
-			free(line);
-		if (element)
-			distrib_elem(rt->scene, element);
 	}
+	free(line);
+	close(fd);
 	if (!(rt->scene->res.declared
 		&& rt->scene->amb_light.declared))
 	{
@@ -65,7 +67,7 @@ t_elem	*set_rt_line_element(char *line)
 		set_rt_element_content(element, splitted);
 		free_array(splitted);
 	}
-	else if (*line && *line != '#')
+	else if (*line)
 		message_and_exit(E_INV_ELEM, NULL);
 	return (element);
 }

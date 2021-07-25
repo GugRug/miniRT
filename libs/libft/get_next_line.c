@@ -8,6 +8,7 @@ int		get_next_line(int fd, char **line)
 	char		*buf;
 	int			r_fd;
 
+	r_fd = -1;
 	if (fd < 0 || fd > FOPEN_MAX || !(line) || BUFFER_SIZE < 1)
 		return (-1);
 	if (!s_line)
