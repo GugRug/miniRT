@@ -30,7 +30,7 @@ t_coord	set_rt_point(char *str)
 		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	if (!valid_float(splitted[0]) || !valid_float(splitted[1])
 		|| !valid_float(splitted[2]))
-		message_and_exit(E_CHAR_ARG, "Float only");
+		message_and_exit(E_CHAR_ARG, "Float only at coords");
 	point = new_point(ft_atof(splitted[0]),
 						ft_atof(splitted[1]),
 						ft_atof(splitted[2]));
@@ -46,7 +46,7 @@ int		set_rt_color(char *str)
 	splitted = ft_split(str, ',');
 	if (!valid_int(splitted[0]) || !valid_int(splitted[1])
 		|| !valid_int(splitted[2]))
-		message_and_exit(E_CHAR_ARG, "Numerical only");
+		message_and_exit(E_CHAR_ARG, "Numerical only at Color");
 	color = color_conv(ft_atoi(splitted[0]),
 						ft_atoi(splitted[1]),
 						ft_atoi(splitted[2]));

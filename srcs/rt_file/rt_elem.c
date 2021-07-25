@@ -17,9 +17,11 @@ void	set_rt_ambient_lightining(t_elem *elem, char **splitted)
 {
 	if (strarray_len(splitted) != 3)
 		message_and_exit(E_N_ARGS_FILE, splitted[0]);
+	if (!valid_float(splitted[1]))
+		message_and_exit(E_CHAR_ARG, "Amb_light ratio Float only");
 	elem->amb_light.amb_light = ft_atof(splitted[1]);
-		if (!validate_posit(elem->amb_light.amb_light, 1, 1)
-			|| !validate_unit_range(elem->amb_light.amb_light, 0.5, 0.5))
+	if (!validate_posit(elem->amb_light.amb_light, 1, 1)
+		|| !validate_unit_range(elem->amb_light.amb_light, 0.5, 0.5))
 		message_and_exit(E_RANGE_ARG, "Amb_light ratio in range [0,1]");
 	elem->amb_light.color = set_rt_color(splitted[2]);
 	elem->amb_light.declared = true;
@@ -46,6 +48,11 @@ void	set_rt_light(t_elem *elem, char **splitted)
 	if (strarray_len(splitted) != 4)
 		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->light.l_p = set_rt_point(splitted[1]);
+	if (!valid_float(splitted[2]))
+		message_and_exit(E_CHAR_ARG, "Light ratio Float only");
 	elem->light.brightness = ft_atof(splitted[2]);
+	if (!validate_posit(elem->light.brightness, 1, 1)
+		|| !validate_unit_range(elem->light.brightness, 0.5, 0.5))
+		message_and_exit(E_RANGE_ARG, "Light ratio in range [0,1]");
 	elem->light.color = set_rt_color(splitted[3]);
 }

@@ -6,8 +6,9 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 		message_and_exit(E_N_ARGS, NULL);
 	if (!argv || !*argv)
 		message_and_exit(E_N_ARGS, NULL);
-	validate_rt_name(argv[1]);
-	if((rt->fd = open(argv[1], O_RDONLY)) < 0)
+	if (!validate_rt_name(argv[1]))
+		message_and_exit(E_C_ARGS, NULL);
+	if ((rt->fd = open(argv[1], O_RDONLY)) < 0)
 		message_and_exit(E_FILE, NULL);
 	if (argc == 3 && !ft_strncmp(argv[2], "--save", 7))
 		rt->save = true;
@@ -47,7 +48,10 @@ bool	validate_rt_name(char *name)
 {
 	if(!name)
 		return (false);
-	// if (ft_strncmp(name, ".rt", 3) != 0)
-	// 	message_and_exit(E_C_ARGS, NULL);
-	return (true);
+
+	char	*ext;
+	ext = ft_strrchr(name, '.');
+	if (ext && !ft_strncmp(ext, ".rt", 4))
+		return (true);
+	return (false);
 }
