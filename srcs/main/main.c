@@ -35,7 +35,7 @@ void	set_init(t_window *window, t_rt *rt, t_scene *scene)
 
 void	set_init_mlx(t_window *window, t_image *image)
 {
-	if(!(window->mlx = mlx_init()))
+	if (!(window->mlx = mlx_init()))
 		message_and_exit(E_SYS, NULL);
 	mlx_get_screen_size(window->mlx, &(window->rt->width),
 						&(window->rt->height));
@@ -45,13 +45,13 @@ void	set_init_mlx(t_window *window, t_image *image)
 		window->rt->scene->res.y = window->rt->height;
 	window->width = window->rt->scene->res.x;
 	window->height = window->rt->scene->res.y;
-	if(!(window->win = mlx_new_window(window->mlx, window->width,
+	if (!(window->win = mlx_new_window(window->mlx, window->width,
 		window->height, window->title)))
 		message_and_exit(E_SYS, NULL);
 	image->width = window->rt->scene->res.x;
 	image->height = window->rt->scene->res.y;
 	window->rt->scene->canvas = new_canvas(window->width, window->height);
-	if(!(image->img = mlx_new_image(window->mlx, image->width, image->height)))
+	if (!(image->img = mlx_new_image(window->mlx, image->width, image->height)))
 		message_and_exit(E_SYS, NULL);
 	image->addr = mlx_get_data_addr(image->img, &(image->bits_per_pixel),
 								&(image->line_length), &(image->endian));

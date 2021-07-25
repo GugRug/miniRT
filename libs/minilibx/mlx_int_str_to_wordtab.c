@@ -1,9 +1,9 @@
 /*
-** mlx_int_str_to_wordtab.c for MinilibX in 
-** 
+** mlx_int_str_to_wordtab.c for MinilibX in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Wed Sep 13 11:36:09 2000 Charlie Root
 ** Last update Fri Dec 14 11:02:09 2001 Charlie Root
 */
@@ -89,7 +89,7 @@ char	**mlx_int_str_to_wordtab(char *str)
     while (*(str+pos) && *(str+pos)!=' ' && *(str+pos)!='\t')
       pos ++;
   }
-  if (!(tab = malloc((1+nb_word)*sizeof(*tab))))
+  if (!(tab = malloc((1+nb_word)*sizeof (*tab))))
     return ((char **)0);
   nb_word = 0;
   pos = 0;

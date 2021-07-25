@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 18:55:15 by gumartin          #+#    #+#             */
-/*   Updated: 2020/02/27 23:47:57 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:20:53 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_itoa_len(int n)
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char		*itoa;
 	int			len;
@@ -38,7 +38,8 @@ char		*ft_itoa(int n)
 
 	len = ft_itoa_len(n);
 	num = n;
-	if ((itoa = (char*)malloc(sizeof(char) * len + 1)) == NULL)
+	itoa = (char *)malloc(sizeof (char) * len + 1);
+	if (itoa == NULL)
 		return (NULL);
 	itoa[len--] = '\0';
 	if (itoa[1] == '\0')

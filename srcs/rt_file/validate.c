@@ -46,7 +46,7 @@ void	set_unique_elements(t_scene *scene, t_elem *elem)
 
 bool	validate_rt_name(char *name)
 {
-	if(!name)
+	if (!name)
 		return (false);
 
 	char	*ext;

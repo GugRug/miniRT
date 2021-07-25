@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 23:24:30 by gumartin          #+#    #+#             */
-/*   Updated: 2020/02/14 04:45:07 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:08:12 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1)
 	j = 0;
 	while (s1[i] != '\0')
 		i++;
-	s2 = (char*)malloc(sizeof(char) * i + 1);
+	s2 = (char *)malloc(sizeof (char) * i + 1);
 	if (s2 == NULL)
 	{
 		return (NULL);

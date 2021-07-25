@@ -6,21 +6,21 @@
 /*
 **	--------------- ELEMENTS TYPEDEFS ---------------
 */
-typedef struct	s_res
+typedef struct s_res
 {
 	int			x;
 	int			y;
 	bool		declared;
 }				t_res;
 
-typedef struct	s_amb_light
+typedef struct s_amb_light
 {
 	double		amb_light;
 	int			color;
 	bool		declared;
 }				t_amb_light;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_coord		orig;
 	t_vect		normal;
@@ -30,7 +30,7 @@ typedef struct	s_camera
 	t_coord		llc;
 }				t_camera;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_coord		l_p;
 	double		brightness;
@@ -38,21 +38,21 @@ typedef struct	s_light
 	bool		intersect;
 }				t_light;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_coord		center;
 	double		diameter;
 	int			color;
 }				t_sphere;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_coord		point;
 	t_vect		normal;
 	int			color;
 }				t_plane;
 
-typedef struct	s_square
+typedef struct s_square
 {
 	t_coord		center;
 	t_vect		normal;
@@ -61,7 +61,7 @@ typedef struct	s_square
 	int			color;
 }				t_square;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_coord		center;
 	t_coord		normal;
@@ -70,7 +70,7 @@ typedef struct	s_cylinder
 	int			color;
 }				t_cylinder;
 
-typedef struct	s_triangle
+typedef struct s_triangle
 {
 	t_vect		vertex[3];
 	t_vect		normal;
@@ -78,7 +78,7 @@ typedef struct	s_triangle
 
 }				t_triangle;
 
-typedef struct	s_elem
+typedef struct s_elem
 {
 	t_type			type;
 	t_res			res;

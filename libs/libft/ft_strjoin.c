@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 05:48:40 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/13 23:21:16 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:08:12 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	str = (char *)ft_calloc(i + j + 1, sizeof(char));
+	str = (char *)ft_calloc(i + j + 1, sizeof (char));
 	i = 0;
 	while (s1[i])
 	{

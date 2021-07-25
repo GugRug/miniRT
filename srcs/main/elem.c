@@ -4,7 +4,7 @@ t_elem	*lst_elem_new(t_type type)
 {
 	t_elem *new;
 
-	if (!(new = (t_elem*)ft_calloc(1, sizeof(t_elem))))
+	if (!(new = (t_elem*)ft_calloc(1, sizeof (t_elem))))
 		return (NULL);
 	new->type = type;
 	new->res.declared = false;

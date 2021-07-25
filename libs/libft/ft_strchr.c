@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:30:41 by gumartin          #+#    #+#             */
-/*   Updated: 2020/02/07 22:32:23 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:26:28 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ char	*ft_strchr(const char *s, int c)
 	while (*s && *s != c)
 		s++;
 	if (*s == c)
-		return ((char*)s);
+		return ((char *)s);
 	return (NULL);
 }

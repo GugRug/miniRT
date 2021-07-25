@@ -19,7 +19,7 @@ int		destroy_window(t_window *window)
 
 int		expose_hook(t_world *w)
 {
-	return(mlx_put_image_to_window(w->window->mlx, w->window->win,
+	return (mlx_put_image_to_window(w->window->mlx, w->window->win,
 									w->image->img, 0, 0));
 }
 

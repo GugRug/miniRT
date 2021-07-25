@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:30:37 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/13 23:50:54 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:08:12 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmapi(char *s, char (*f)(unsigned int, char))
 	if (!s)
 		return (NULL);
 	i = 0;
-	cpy = (char*)malloc(sizeof(char) * ft_strlen(s) + 1);
+	cpy = (char *)malloc(sizeof (char) * ft_strlen(s) + 1);
 	if (!cpy)
 		return (NULL);
 	while (s[i])

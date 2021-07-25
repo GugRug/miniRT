@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 23:57:48 by gumartin          #+#    #+#             */
-/*   Updated: 2020/03/04 03:13:50 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:32:32 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	ft_cont_words(const char *s, char c)
 {
 	int	i;
-	int words;
+	int	words;
 
 	i = 0;
 	words = 0;
@@ -50,7 +50,7 @@ static char	*create_word(char const *s, char c)
 
 	len = strlen_sep(s, c);
 	i = 0;
-	word = (char*)malloc(sizeof(char) * len + 1);
+	word = (char *)malloc(sizeof (char) * len + 1);
 	if (word == NULL)
 		return (NULL);
 	while (s[i] != c && s[i])
@@ -87,13 +87,14 @@ static char	**ft_put_split(char **split, const char *s, char c)
 	return (split);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 
 	if (!s)
 		return (NULL);
-	if (!(split = (char**)malloc(sizeof(char*) * (ft_cont_words(s, c) + 1))))
+	split = (char **)malloc(sizeof (char *) * (ft_cont_words(s, c) + 1));
+	if (!split)
 		return (NULL);
 	return (ft_put_split(split, s, c));
 }

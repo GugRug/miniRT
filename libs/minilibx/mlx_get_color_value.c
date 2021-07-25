@@ -1,9 +1,9 @@
 /*
-** mlx_get_color_value.c for MiniLibX in 
-** 
+** mlx_get_color_value.c for MiniLibX in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Mon Jul 31 19:01:33 2000 Charlie Root
 ** Last update Thu Oct  4 15:04:13 2001 Charlie Root
 */
@@ -14,7 +14,7 @@
 
 int             mlx_get_color_value(t_xvar *xvar,int color)
 {
-  return(mlx_int_get_good_color(xvar,color));
+  return (mlx_int_get_good_color(xvar,color));
 }
 
 int		mlx_int_get_good_color(t_xvar *xvar,int color)

@@ -21,7 +21,7 @@ int		color_check(int color)
 {
 	if (color > 0xFF)
 		return (0xFF);
-	else if(color < 0x0)
+	else if (color < 0x0)
 		return (0x0);
 	return (color);
 }

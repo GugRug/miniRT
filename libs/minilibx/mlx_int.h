@@ -1,9 +1,9 @@
 /*
-** mlx_int.h for mlx in 
-** 
+** mlx_int.h for mlx in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Mon Jul 31 16:45:48 2000 Charlie Root
 ** Last update Wed May 25 16:44:16 2011 Olivier Crouzet
 */
@@ -46,7 +46,7 @@
 # define WARN_SHM_ATTACH "MinilibX Warning : X server can't attach shared memory.\n"
 
 
-typedef	struct	s_xpm_col
+typedef struct s_xpm_col
 {
 	int		name;
 	int		col;
@@ -59,7 +59,7 @@ struct	s_col_name
 	int		color;
 };
 
-typedef struct	s_event_list
+typedef struct s_event_list
 {
 	int		mask;
 	int		(*hook)();
@@ -67,7 +67,7 @@ typedef struct	s_event_list
 }				t_event_list;
 
 
-typedef struct	s_win_list
+typedef struct s_win_list
 {
 	Window				window;
 	GC					gc;
@@ -82,7 +82,7 @@ typedef struct	s_win_list
 }				t_win_list;
 
 
-typedef struct	s_img
+typedef struct s_img
 {
 	XImage			*image;
 	Pixmap			pix;
@@ -97,7 +97,7 @@ typedef struct	s_img
 	XShmSegmentInfo	shm;
 }				t_img;
 
-typedef struct	s_xvar
+typedef struct s_xvar
 {
 	Display		*display;
 	Window		root;

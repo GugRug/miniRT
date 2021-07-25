@@ -1,9 +1,9 @@
 /*
-** mlx_new_window.c for MiniLibX in 
-** 
+** mlx_new_window.c for MiniLibX in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Mon Jul 31 17:29:02 2000 Charlie Root
 ** Last update Thu Oct  4 15:44:43 2001 Charlie Root
 */
@@ -34,7 +34,7 @@ void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)
 	*/
 	/* xswa.event_mask = ExposureMask; */
 	xswa.event_mask = 0xFFFFFF;	/* all events */
-	if (!(new_win = malloc(sizeof(*new_win))))
+	if (!(new_win = malloc(sizeof (*new_win))))
 		return ((void *)0);
 	new_win->window = XCreateWindow(xvar->display,xvar->root,0,0,size_x,size_y,
 					0,CopyFromParent,InputOutput,xvar->visual,
@@ -55,7 +55,7 @@ void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)
 	new_win->key_hook = mlx_int_do_nothing;
 	new_win->expose_hook = mlx_int_do_nothing;
 	*/
-	bzero(&(new_win->hooks), sizeof(new_win->hooks));
+	bzero(&(new_win->hooks), sizeof (new_win->hooks));
 	XMapRaised(xvar->display,new_win->window);
 	mlx_int_wait_first_expose(xvar,new_win->window);
 	return (new_win);

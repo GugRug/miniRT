@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 02:35:16 by gumartin          #+#    #+#             */
-/*   Updated: 2020/02/20 02:35:32 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:34:13 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (s)
+	{
 		while (*s)
 		{
 			write(fd, s, 1);
 			s++;
 		}
+	}
 }

@@ -13,7 +13,7 @@ typedef	struct s_rt		t_rt;
 typedef	struct s_scene	t_scene;
 typedef	struct s_ray	t_ray;
 
-typedef struct	s_window
+typedef struct s_window
 {
 	void	*mlx;
 	void	*win;
@@ -23,7 +23,7 @@ typedef struct	s_window
 	t_rt	*rt;
 }				t_window;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*img;
 	char	*addr;
@@ -34,7 +34,7 @@ typedef struct	s_image
 	int		endian;
 }				t_image;
 
-typedef struct	s_world
+typedef struct s_world
 {
 	t_window	*window;
 	t_image		*image;
@@ -43,7 +43,7 @@ typedef struct	s_world
 **	--------------- ARGS TYPEDEFS ---------------
 */
 
-typedef struct	s_rt
+typedef struct s_rt
 {
 	int			fd;
 	bool		save;
@@ -52,14 +52,14 @@ typedef struct	s_rt
 	t_scene		*scene;
 }				t_rt;
 
-typedef struct	s_canvas
+typedef struct s_canvas
 {
 	int		width;
 	int		height;
 	int		**canv;
 }				t_canvas;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_coord		orig;
 	t_vect		dir;
@@ -72,7 +72,7 @@ typedef struct	s_ray
 	int			color;
 }				t_ray;
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	t_elem		*elem;
 	t_elem		*camera;

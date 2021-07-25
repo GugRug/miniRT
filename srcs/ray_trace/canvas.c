@@ -9,11 +9,11 @@ t_canvas	new_canvas(int width, int height)
 	canvas.width = width;
 	canvas.height = height;
 	i = 0;
-	canvas.canv = (int**)malloc((width + 1)* sizeof(int**));
+	canvas.canv = (int**)malloc((width + 1)* sizeof (int**));
 	canvas.canv[width] = NULL;
 	while (i < width)
 	{
-		canvas.canv[i] = (int*)malloc((height + 1)* sizeof(int*));
+		canvas.canv[i] = (int*)malloc((height + 1)* sizeof (int *));
 		i++;
 	}
 	i = 0;

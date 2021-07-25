@@ -6,13 +6,13 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 23:25:34 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/13 23:25:44 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:19:06 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strchr_bn(char *s)
+int	ft_strchr_bn(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] && s[i] != '\n')

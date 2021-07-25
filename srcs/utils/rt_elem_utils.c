@@ -8,7 +8,7 @@ double	ft_atof(const char *str)
 	int		signal;
 	splitted = ft_split(str, '.');
 	signal = 1;
-	if(*splitted && **splitted == '-')
+	if (*splitted && **splitted == '-')
 		signal = -1;
 	n1 = (double)(ft_atoi(splitted[0])) * signal;
 	n2 = 0;

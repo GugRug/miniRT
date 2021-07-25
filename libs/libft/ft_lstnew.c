@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 11:52:05 by gumartin          #+#    #+#             */
-/*   Updated: 2020/02/21 01:42:33 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:25:30 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list *new;
+	t_list	*new;
 
-	if (!(new = (t_list*)malloc(sizeof(t_list))))
+	new = (t_list *)malloc(sizeof (t_list));
+	if (!new)
 		return (NULL);
 	new->content = content;
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 04:47:37 by gumartin          #+#    #+#             */
-/*   Updated: 2021/06/13 23:47:58 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:08:12 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (s != NULL)
 	{
-		sub = (char*)malloc(sizeof(char) * (len + 1));
+		sub = (char *)malloc(sizeof (char) * (len + 1));
 		if (!sub)
 			return (0);
 		i = 0;

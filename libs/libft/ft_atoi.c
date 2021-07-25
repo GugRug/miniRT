@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 23:12:36 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/01 08:48:10 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:34:30 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	ft_set_entry(const char **str, int *signal)
 {
-	int pass;
+	int	pass;
 
 	pass = 0;
 	while (*str && (**str == ' ' || **str == '\n' || **str == '\t'
-		|| **str == '\v' || **str == '\f' || **str == '\r'))
+			|| **str == '\v' || **str == '\f' || **str == '\r'))
 		(*str)++;
 	while (**str == '-' || **str == '+')
 	{
@@ -32,7 +32,7 @@ static int	ft_set_entry(const char **str, int *signal)
 	return (1);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	soma;
 	int	signal;

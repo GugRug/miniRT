@@ -36,7 +36,7 @@ bool	light_intersect(t_ray *ray, t_light *light, t_scene *scene, t_color *color)
 	light_ray.orig = v_add(ray->pos, v_scale(ray->normal, EPSILON));
 	light_ray.dir = v_norm(v_sub(light->l_p, light_ray.orig));
 	intersect(&light_ray, scene);
-	if(!light_ray.intersect)
+	if (!light_ray.intersect)
 	{
 		reflect_ray = v_sub(light->l_p,ray->pos);
 		r2 = v_len_sqred(reflect_ray);

@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 15:40:21 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/24 22:48:37 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:00:50 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 
-typedef enum	e_error{
+typedef	enum	e_error{
 	E_SYS,
 	E_N_ARGS,
 	E_C_ARGS,
