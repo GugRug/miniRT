@@ -88,10 +88,10 @@ bool	hit_cylinder(t_elem *elem,t_ray *ray)
 		ray->t = time;
 		ray_position(ray);
 		ray->normal = v_norm(v_sub(ray->pos,
-				v_add(v_scale(elem->cylinder.normal, y), elem->cylinder.center)));
+				v_add(v_scale(elem->cy.normal, y), elem->cy.center)));
 		if (ret[0] == false & ret[1] == true)
 			ray->normal = v_scale(ray->normal, -1);
-		ray->color = elem->cylinder.color;
+		ray->color = elem->cy.color;
 	}
 	return (ret[0] || ret[1]);
 }

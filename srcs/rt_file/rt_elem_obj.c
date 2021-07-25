@@ -18,7 +18,7 @@ void	set_rt_plane(t_elem *elem, char **splitted)
 	elem->plane.point = set_rt_point(splitted[1]);
 	elem->plane.normal = set_rt_point(splitted[2]);
 	if (!validate_unit_range(elem->plane.normal.x,
-		elem->plane.normal.y, elem->plane.normal.z))
+			elem->plane.normal.y, elem->plane.normal.z))
 		message_and_exit(E_RANGE_ARG, "Plane Normal ratio in range [-1,1]");
 	elem->plane.color = set_rt_color(splitted[3]);
 }
@@ -30,7 +30,7 @@ void	set_rt_square(t_elem *elem, char **splitted)
 	elem->square.center = set_rt_point(splitted[1]);
 	elem->square.normal = set_rt_point(splitted[2]);
 	if (!validate_unit_range(elem->square.normal.x,
-		elem->square.normal.y, elem->square.normal.z))
+			elem->square.normal.y, elem->square.normal.z))
 		message_and_exit(E_RANGE_ARG, "Square Normal ratio in range [-1,1]");
 	if (!valid_float(splitted[3]))
 		message_and_exit(E_CHAR_ARG, "Square side Float only");
@@ -43,19 +43,19 @@ void	set_rt_cylinder(t_elem *elem, char **splitted)
 {
 	if (strarray_len(splitted) != 6)
 		message_and_exit(E_N_ARGS_FILE, splitted[0]);
-	elem->cylinder.center = set_rt_point(splitted[1]);
-	elem->cylinder.normal = set_rt_point(splitted[2]);
-	if (!validate_unit_range(elem->cylinder.normal.x,
-		elem->cylinder.normal.y, elem->cylinder.normal.z))
+	elem->cy.center = set_rt_point(splitted[1]);
+	elem->cy.normal = set_rt_point(splitted[2]);
+	if (!validate_unit_range(elem->cy.normal.x,
+			elem->cy.normal.y, elem->cy.normal.z))
 		message_and_exit(E_RANGE_ARG, "Cylinder Normal ratio in range [-1,1]");
-	elem->cylinder.normal = v_norm(elem->cylinder.normal);
+	elem->cy.normal = v_norm(elem->cy.normal);
 	if (!valid_float(splitted[3]))
 		message_and_exit(E_CHAR_ARG, "Cylinder Diameter Float only");
-	elem->cylinder.diameter = ft_atof(splitted[3]);
+	elem->cy.diameter = ft_atof(splitted[3]);
 	if (!valid_float(splitted[4]))
 		message_and_exit(E_CHAR_ARG, "Cylinder Height Float only");
-	elem->cylinder.height = ft_atof(splitted[4]);
-	elem->cylinder.color = set_rt_color(splitted[5]);
+	elem->cy.height = ft_atof(splitted[4]);
+	elem->cy.color = set_rt_color(splitted[5]);
 }
 
 void	set_rt_triangle(t_elem *elem, char **splitted)

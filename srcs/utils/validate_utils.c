@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int		strarray_len(char **str)
+int	strarray_len(char **str)
 {
 	int	i;
 
@@ -12,15 +12,14 @@ int		strarray_len(char **str)
 
 bool	validate_unit_range(double a, double b, double c)
 {
-	if (a >= -1 && b >= -1 && c >= -1
-		&& a <= 1 && b <= 1 && c <= 1)
+	if (a >= -1 && b >= -1 && c >= -1 && a <= 1 && b <= 1 && c <= 1)
 		return (true);
 	return (false);
 }
 
 bool	validate_posit(double a, double b, double c)
 {
-		if (a >= 0 && b >= 0 && c >= 0)
+	if (a >= 0 && b >= 0 && c >= 0)
 		return (true);
 	return (false);
 }
@@ -37,7 +36,8 @@ bool	valid_float(const char *str)
 	while (str[i])
 	{
 		if (i == 0)
-			is_float &= (ft_isdigit(str[i]) | (str[i] == '+') | (str[i] == '-'));
+			is_float &= (ft_isdigit(str[i]) | (str[i] == '+')
+					| (str[i] == '-'));
 		else
 			is_float &= (ft_isdigit(str[i]) | (str[i] == '.'));
 		if (str[i] == '.')

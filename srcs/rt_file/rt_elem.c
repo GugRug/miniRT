@@ -34,7 +34,7 @@ void	set_rt_camera(t_elem *elem, char **splitted)
 	elem->camera.orig = set_rt_point(splitted[1]);
 	elem->camera.normal = set_rt_point(splitted[2]);
 	if (!validate_unit_range(elem->camera.normal.x,
-		elem->camera.normal.y, elem->camera.normal.z))
+			elem->camera.normal.y, elem->camera.normal.z))
 		message_and_exit(E_RANGE_ARG, "Camera Normal ratio in range [-1,1]");
 	if (!valid_int(splitted[3]))
 		message_and_exit(E_CHAR_ARG, "Camera fov ratio bad CHAR detected");

@@ -46,10 +46,10 @@ void	set_unique_elements(t_scene *scene, t_elem *elem)
 
 bool	validate_rt_name(char *name)
 {
+	char	*ext;
+
 	if (!name)
 		return (false);
-
-	char	*ext;
 	ext = ft_strrchr(name, '.');
 	if (ext && !ft_strncmp(ext, ".rt", 4))
 		return (true);

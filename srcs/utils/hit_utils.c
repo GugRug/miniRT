@@ -10,7 +10,7 @@ bool	hit_sphere_root(t_elem *elem, t_ray *ray, double *root)
 	d = v_sub(ray->orig, elem->sphere.center);
 	a = v_dot(ray->dir, ray->dir);
 	b = 2 * v_dot(ray->dir, d);
-	c = v_dot(d, d) - pow((elem->sphere.diameter)/2, 2);
+	c = v_dot(d, d) - pow((elem->sphere.diameter) / 2, 2);
 	if (bhaskara(a, b, c, root) >= 0)
 		return (true);
 	return (false);
@@ -20,7 +20,7 @@ bool	is_inside(t_ray r, t_coord *v, unsigned int vertex)
 {
 	unsigned int	i;
 	bool			in;
-	float			det[vertex];
+	float			det[4];
 	t_vect			det_cross;
 
 	in = true;
@@ -46,16 +46,18 @@ double	cy_calc(t_ray ray, t_elem cy, double *y, bool ret[2])
 	double	time[2];
 	double	dist[2];
 
-	v[0] = v_sub(ray.dir, v_scale(cy.cylinder.normal, v_dot(ray.dir, cy.cylinder.normal)));
-	v[1] = v_sub(v_sub(ray.orig, cy.cylinder.center),
-			v_scale(cy.cylinder.normal, v_dot(v_sub(ray.orig, cy.cylinder.center), cy.cylinder.normal)));
+	v[0] = v_sub(ray.dir,
+			v_scale(cy.cy.normal, v_dot(ray.dir, cy.cy.normal)));
+	v[1] = v_sub(v_sub(ray.orig, cy.cy.center),
+			v_scale(cy.cy.normal,
+				v_dot(v_sub(ray.orig, cy.cy.center), cy.cy.normal)));
 	bhaskara(v_len_sqred(v[0]), 2 * v_dot(v[0], v[1]),
-				v_len_sqred(v[1]) - pow(cy.cylinder.diameter / 2, 2), time);
-	v_cy2ray = v_sub(cy.cylinder.center, ray.orig);
-	dist[0] = v_dot(cy.cylinder.normal, v_sub(v_scale(ray.dir, time[0]), v_cy2ray));
-	dist[1] = v_dot(cy.cylinder.normal, v_sub(v_scale(ray.dir, time[1]), v_cy2ray));
-	ret[0] = (dist[0] >= 0 && dist[0] <= cy.cylinder.height && time[0] > EPSILON);
-	ret[1] = (dist[1] >= 0 && dist[1] <= cy.cylinder.height && time[1] > EPSILON);
+		v_len_sqred(v[1]) - pow(cy.cy.diameter / 2, 2), time);
+	v_cy2ray = v_sub(cy.cy.center, ray.orig);
+	dist[0] = v_dot(cy.cy.normal, v_sub(v_scale(ray.dir, time[0]), v_cy2ray));
+	dist[1] = v_dot(cy.cy.normal, v_sub(v_scale(ray.dir, time[1]), v_cy2ray));
+	ret[0] = (dist[0] >= 0 && dist[0] <= cy.cy.height && time[0] > EPSILON);
+	ret[1] = (dist[1] >= 0 && dist[1] <= cy.cy.height && time[1] > EPSILON);
 	if (!ret[0] && ret[1])
 	{
 		*y = dist[1];

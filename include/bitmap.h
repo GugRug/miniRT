@@ -15,7 +15,7 @@
 
 # pragma pack(push, 1)
 
-typedef	struct		s_file_h
+typedef struct s_file_h
 {
 	short int		type;
 	int				size;
@@ -23,7 +23,7 @@ typedef	struct		s_file_h
 	unsigned int	offset;
 }					t_file_h;
 
-typedef	struct		s_bmp_h
+typedef struct s_bmp_h
 {
 	unsigned int	size;
 	int				width;

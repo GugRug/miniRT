@@ -9,9 +9,9 @@
 **	--------------- BASIC TYPEDEFS ---------------
 */
 
-typedef	struct s_rt		t_rt;
-typedef	struct s_scene	t_scene;
-typedef	struct s_ray	t_ray;
+typedef struct s_rt		t_rt;
+typedef struct s_scene	t_scene;
+typedef struct s_ray	t_ray;
 
 typedef struct s_window
 {

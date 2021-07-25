@@ -88,10 +88,10 @@ typedef struct s_elem
 	t_sphere		sphere;
 	t_plane			plane;
 	t_square		square;
-	t_cylinder		cylinder;
+	t_cylinder		cy;
 	t_triangle		triangle;
 	struct s_elem	*next;
 	struct s_elem	*prev;
 }				t_elem;
 
-# endif
+#endif

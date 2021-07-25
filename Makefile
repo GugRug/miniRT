@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/25 08:47:38 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/25 12:42:12 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ fclean:	clean
 	@echo "$(NAME) was removed successfully!"
 
 valg:
-	valgrind --leak-check=full --track-origins=yes ./miniRT teste.rt
+	valgrind --leak-check=full --track-origins=yes ./miniRT board.rt
 
 re:	fclean all
 

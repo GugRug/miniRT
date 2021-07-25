@@ -12,7 +12,6 @@ void	set_rt(t_rt *rt)
 	{
 		if (*line && *line != '#')
 		{
-			// clean_extra_space(line);
 			element = set_rt_line_element(line);
 			if (element)
 				distrib_elem(rt->scene, element);
@@ -21,11 +20,8 @@ void	set_rt(t_rt *rt)
 	}
 	free(line);
 	close(fd);
-	if (!(rt->scene->res.declared
-		&& rt->scene->amb_light.declared))
-	{
+	if (!(rt->scene->res.declared && rt->scene->amb_light.declared))
 		message_and_exit(E_R_A_FILE, NULL);
-	}
 	rt->scene->camera->prev = lst_elem_last(rt->scene->camera);
 	lst_elem_last(rt->scene->camera)->next = rt->scene->camera;
 }
@@ -36,8 +32,7 @@ void	distrib_elem(t_scene *scene, t_elem *elem)
 		lst_elem_add_back(&(scene->camera), elem);
 	else if (elem->type == LIGHT)
 		lst_elem_add_back(&(scene->light), elem);
-	else if (elem->type == RESOLUTION ||
-			elem->type == AMBIENT_LIGHTINING)
+	else if (elem->type == RESOLUTION || elem->type == AMBIENT_LIGHTINING)
 		set_unique_elements(scene, elem);
 	else
 		lst_elem_add_back(&(scene->elem), elem);
@@ -45,19 +40,19 @@ void	distrib_elem(t_scene *scene, t_elem *elem)
 
 t_elem	*set_rt_line_element(char *line)
 {
-	int		j;
-	char	**splitted;
-	t_elem	*element;
-	static char	*valid[9] = {"R ", "A ", "c ", "l ", "sp", "pl", "sq", "cy", "tr"};
+	int			j;
+	char		**splitted;
+	t_elem		*element;
+	static char	*v[9] = {"R ", "A ", "c ", "l ", "sp", "pl", "sq", "cy", "tr"};
 
 	j = 0;
 	element = NULL;
-	while (valid[j] != NULL)
+	while (v[j] != NULL)
 	{
-		if (!ft_strncmp(valid[j], line, 2))
+		if (!ft_strncmp(v[j], line, 2))
 		{
 			element = lst_elem_new(j);
-			break;
+			break ;
 		}
 		j++;
 	}

@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 15:40:21 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/25 11:00:50 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/25 11:55:21 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 
-typedef	enum	e_error{
+typedef enum e_error{
 	E_SYS,
 	E_N_ARGS,
 	E_C_ARGS,
@@ -30,10 +30,10 @@ typedef	enum	e_error{
 
 static char	*g_error[MAX_ERROR] = {
 	"System error",
-	"Incorect number of arguments, need a (.rt) file as first argument and the (--save) as second argument is optional.",
-	"Incorect argument, check if (.rt) file as first argument and the optional (--save) as second",
+	"Number of args, need (.rt) file as first and the (--save) as second",
+	"Argument, check if (.rt) file as first argument and (--save) as second",
 	"No file finded, check the name and the path to it again",
-	"Resolution and Ambient light need to be especified exactly once each at the (.rt) file",
+	"Resolution and Ambient light need to be especified once each at (.rt)",
 	"Invalid Element Specifier at (.rt) file",
 	"Invalid Number of arguments inside (.rt) at an element type",
 	"Invalid range at an argument",

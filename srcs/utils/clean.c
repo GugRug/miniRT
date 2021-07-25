@@ -2,7 +2,7 @@
 
 void	free_array(char **array)
 {
-	unsigned	i;
+	unsigned int	i;
 
 	i = 0;
 	while (array[i])
@@ -15,7 +15,7 @@ void	free_array(char **array)
 	array = NULL;
 }
 
-int		free_all(t_world *w)
+int	free_all(t_world *w)
 {
 	if (w->window->win)
 	{
