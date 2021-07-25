@@ -12,7 +12,6 @@ void	message_and_exit(t_error code, char *str)
 		{
 			ft_putstr_fd(": ", STDERR_FILENO);
 			ft_putstr_fd(str, STDERR_FILENO);
-			free(str);
 		}
 		ft_putchar_fd('\n', STDERR_FILENO);
 	}

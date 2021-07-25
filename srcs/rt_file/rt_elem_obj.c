@@ -2,6 +2,8 @@
 
 void	set_rt_sphere(t_elem *elem, char **splitted)
 {
+	if (strarray_len(splitted) != 4)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->sphere.center = set_rt_point(splitted[1]);
 	elem->sphere.diameter = ft_atof(splitted[2]);
 	elem->sphere.color = set_rt_color(splitted[3]);
@@ -9,6 +11,8 @@ void	set_rt_sphere(t_elem *elem, char **splitted)
 
 void	set_rt_plane(t_elem *elem, char **splitted)
 {
+	if (strarray_len(splitted) != 4)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->plane.point = set_rt_point(splitted[1]);
 	elem->plane.normal = set_rt_point(splitted[2]);
 	elem->plane.color = set_rt_color(splitted[3]);
@@ -16,6 +20,8 @@ void	set_rt_plane(t_elem *elem, char **splitted)
 
 void	set_rt_square(t_elem *elem, char **splitted)
 {
+	if (strarray_len(splitted) != 5)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->square.center = set_rt_point(splitted[1]);
 	elem->square.normal = set_rt_point(splitted[2]);
 	elem->square.side = ft_atof(splitted[3]);
@@ -25,6 +31,8 @@ void	set_rt_square(t_elem *elem, char **splitted)
 
 void	set_rt_cylinder(t_elem *elem, char **splitted)
 {
+	if (strarray_len(splitted) != 6)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->cylinder.center = set_rt_point(splitted[1]);
 	elem->cylinder.normal = set_rt_point(splitted[2]);
 	elem->cylinder.normal = v_norm(elem->cylinder.normal);
@@ -35,6 +43,8 @@ void	set_rt_cylinder(t_elem *elem, char **splitted)
 
 void	set_rt_triangle(t_elem *elem, char **splitted)
 {
+	if (strarray_len(splitted) != 5)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
 	elem->triangle.vertex[0] = set_rt_point(splitted[1]);
 	elem->triangle.vertex[1] = set_rt_point(splitted[2]);
 	elem->triangle.vertex[2] = set_rt_point(splitted[3]);

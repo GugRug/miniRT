@@ -6,7 +6,7 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/16 14:21:54 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/24 12:45:25 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,9 @@ fclean:	clean
 	$(RM) $(NAME)
 	@echo "$(NAME) was removed successfully!"
 
+valg:
+	valgrind --leak-check=full ./miniRT teste.rt
+
 re:	fclean all
 
 .PHONY:	all clean fclean re
@@ -158,7 +161,5 @@ re:	fclean all
 
 # re: fclean all
 
-#valg: batata
-#	valgrind --leak-check=full ./a.out
 
 .PHONY: all clean fclean re

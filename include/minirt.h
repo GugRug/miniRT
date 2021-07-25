@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/24 11:26:30 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/24 23:10:50 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define KEY_C		0x63
 
 # define EPSILON	0.0001
-# define FT_M_PI		3.14159265358979323846
+# define FT_M_PI	3.14159265358979323846
 
 /*
 **	--------------- FUNCTION DECLARATIONS ---------------
@@ -191,5 +191,15 @@ void	init_camera(t_camera *camera, t_scene *scene);
 **	error.c
 */
 void	message_and_exit(t_error code, char *str);
+
+/*
+**	validate_utils.c
+*/
+int		strarray_len(char **str);
+void	free_array(char **array);
+bool	validate_unit_range(double a, double b, double c);
+bool	validate_posit(double a, double b, double c);
+bool	valid_float(const char *str);
+bool	valid_int(const char *str);
 
 #endif

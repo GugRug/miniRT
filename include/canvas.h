@@ -59,7 +59,6 @@ typedef struct	s_canvas
 	int		**canv;
 }				t_canvas;
 
-
 typedef struct	s_ray
 {
 	t_coord		orig;

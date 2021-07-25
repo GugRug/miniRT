@@ -14,7 +14,7 @@ double	ft_atof(const char *str)
 	n2 = 0;
 	if (splitted[1])
 		n2 = ft_atoi(splitted[1])/pow(10, ft_strlen(splitted[1]));
-	free(splitted);
+	free_array(splitted);
 	if ((n1 + n2) > 0)
 		return ((n1 + n2) * signal);
 	return (n1 + n2);
@@ -26,11 +26,15 @@ t_coord	set_rt_point(char *str)
 	char	**splitted;
 
 	splitted = ft_split(str, ',');
+	if (strarray_len(splitted) != 3)
+		message_and_exit(E_N_ARGS_FILE, splitted[0]);
+	if (!valid_float(splitted[0]) || !valid_float(splitted[1])
+		|| !valid_float(splitted[2]))
+		message_and_exit(E_CHAR_ARG, "Float only");
 	point = new_point(ft_atof(splitted[0]),
 						ft_atof(splitted[1]),
 						ft_atof(splitted[2]));
-	free(splitted);
-	splitted = NULL;
+	free_array(splitted);
 	return (point);
 }
 
@@ -40,11 +44,13 @@ int		set_rt_color(char *str)
 	int		color;
 
 	splitted = ft_split(str, ',');
+	if (!valid_int(splitted[0]) || !valid_int(splitted[1])
+		|| !valid_int(splitted[2]))
+		message_and_exit(E_CHAR_ARG, "Numerical only");
 	color = color_conv(ft_atoi(splitted[0]),
 						ft_atoi(splitted[1]),
 						ft_atoi(splitted[2]));
-	free(splitted);
-	splitted = NULL;
+	free_array(splitted);
 	return (color);
 }
 

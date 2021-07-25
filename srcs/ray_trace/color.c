@@ -11,6 +11,9 @@ int		clamp(int x)
 
 t_color	color_conv(int red, int green, int blue)
 {
+	if (red > 255 || green > 255 || blue > 255
+		|| red < 0 || green < 0 || blue < 0)
+		message_and_exit(E_RANGE_ARG, "Color Range [0,255]");
 	return (red << 16 | green << 8 | blue);
 }
 
