@@ -8,7 +8,7 @@ void	set_rt(t_rt *rt)
 
 	fd = rt->fd;
 	line = NULL;
-	while (get_next_line(fd, &line))
+	while (ft_get_next_line(fd, &line))
 	{
 		if (*line && *line != '#')
 		{
@@ -87,17 +87,4 @@ void	set_rt_element_content(t_elem *elem, char **splitted)
 		set_rt_cylinder(elem, splitted);
 	else if (elem->type == TRIANGLE)
 		set_rt_triangle(elem, splitted);
-}
-
-void	clean_extra_space(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != '\0' && line)
-	{
-		if (line[i] == ' ' && i > 0 && line[i - 1] == ' ')
-			ft_memmove(&line[i - 1], &line[i], ft_strlen(line));
-		i++;
-	}
 }

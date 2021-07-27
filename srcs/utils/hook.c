@@ -10,7 +10,7 @@ int	key_hook(int keycode, t_world *w)
 }
 
 int	destroy_window(t_window *window)
-{
+{	
 	mlx_destroy_window(window->mlx, window->win);
 	window->win = NULL;
 	exit(1);

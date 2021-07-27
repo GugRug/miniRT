@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int		clamp(int x)
+int	clamp(int x)
 {
 	if (x > 0xFF)
 		return (0xFF);
@@ -17,20 +17,11 @@ t_color	color_conv(int red, int green, int blue)
 	return (red << 16 | green << 8 | blue);
 }
 
-int		color_check(int color)
-{
-	if (color > 0xFF)
-		return (0xFF);
-	else if (color < 0x0)
-		return (0x0);
-	return (color);
-}
-
 t_color	color_add(t_color u, t_color v)
 {
-	int 	red;
-	int 	green;
-	int 	blue;
+	int	red;
+	int	green;
+	int	blue;
 
 	red = clamp((u >> 0x10) + (v >> 0x10));
 	green = clamp((u >> 0x08 & 0xFF) + (v >> 0x08 & 0xFF));
@@ -40,9 +31,9 @@ t_color	color_add(t_color u, t_color v)
 
 t_color	color_scale(t_color rgb, double c)
 {
-	int 	red;
-	int 	green;
-	int 	blue;
+	int	red;
+	int	green;
+	int	blue;
 
 	red = clamp(c * (rgb >> 0x10));
 	green = clamp(c * ((rgb >> 0x08) & 0xFF));
@@ -56,11 +47,9 @@ t_color	color_product(t_color u, t_color v)
 	int		g;
 	int		b;
 
-	r = (((float)(u >> 0x10) / 0xFF) *
-			((float)(v >> 0x10) / 0xFF)) * 0xFF;
-	g = (((float)((u >> 0x08) & 0xFF) / 0xFF) *
-			((float)((v >> 0x08) & 0xFF) / 0xFF)) * 0xFF;
-	b = (((float)(u & 0xFF) / 0xFF) *
-			((float)(v & 0xFF) / 0xFF)) * 0xFF;
+	r = (((float)(u >> 0x10) / 0xFF) * ((float)(v >> 0x10) / 0xFF)) * 0xFF;
+	g = (((float)((u >> 0x08) & 0xFF) / 0xFF)
+			* ((float)((v >> 0x08) & 0xFF) / 0xFF)) * 0xFF;
+	b = (((float)(u & 0xFF) / 0xFF) * ((float)(v & 0xFF) / 0xFF)) * 0xFF;
 	return ((r << 16) | (g << 8) | b);
 }

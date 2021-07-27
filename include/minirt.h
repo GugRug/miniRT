@@ -6,7 +6,7 @@
 /*   By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 17:34:16 by gumartin          #+#    #+#             */
-/*   Updated: 2021/07/25 12:19:30 by gumartin         ###   ########.fr       */
+/*   Updated: 2021/07/27 06:27:10 by gumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 
 # define KEY_ESC	0xff1b
 # define KEY_A		0x61
-# define KEY_C		0x63
 # define KEY_D		0x64
 # define EPSILON	0.0001
 # define FT_M_PI	3.14159265358979323846
@@ -88,7 +87,6 @@ void		set_rt(t_rt *rt);
 void		distrib_elem(t_scene *scene, t_elem *elem);
 t_elem		*set_rt_line_element(char *line);
 void		set_rt_element_content(t_elem *elem, char **splitted);
-void		clean_extra_space(char *line);
 
 /*
 **	rt_elem.c
@@ -121,6 +119,7 @@ void		set_square_vertex(t_square *s);
 void		validate_args(int argc, char **argv, t_rt *rt);
 void		set_unique_elements(t_scene *scene, t_elem *elem);
 bool		validate_rt_name(char *name);
+int			color_check(int color);
 
 /*
 **	vector.c
@@ -209,7 +208,6 @@ int			free_all(t_world *w);
 /*
 ** bitmap.c
 */
-int			export_bitmap(char *filename, int width,
-				int height, t_image img);
+int			export_bitmap(char *filename, int x, int y, t_image img);
 
 #endif

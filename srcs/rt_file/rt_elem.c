@@ -8,7 +8,8 @@ void	set_rt_resolution(t_elem *elem, char **splitted)
 		message_and_exit(E_CHAR_ARG, "Resolution Numerical only");
 	elem->res.x = ft_atoi(splitted[1]);
 	elem->res.y = ft_atoi(splitted[2]);
-	if (!validate_posit(elem->res.x, elem->res.y, 1))
+	if (!validate_posit(elem->res.x, elem->res.y, 1)
+		|| !(elem->res.x * elem->res.y))
 		message_and_exit(E_CHAR_ARG, "Resolution Positive Numerical only");
 	elem->res.declared = true;
 }

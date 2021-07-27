@@ -8,16 +8,13 @@ t_canvas	new_canvas(int width, int height)
 
 	canvas.width = width;
 	canvas.height = height;
-	i = 0;
-	canvas.canv = (int**)malloc((width + 1)* sizeof (int**));
+	i = -1;
+	canvas.canv = (int **)malloc((width + 1) * sizeof (int **));
 	canvas.canv[width] = NULL;
-	while (i < width)
-	{
-		canvas.canv[i] = (int*)malloc((height + 1)* sizeof (int *));
-		i++;
-	}
-	i = 0;
-	while (i < width)
+	while (i++ < width)
+		canvas.canv[i] = (int *)malloc((height + 1) * sizeof (int *));
+	i = -1;
+	while (i++ < width)
 	{
 		j = 0;
 		while (j < height)
@@ -25,20 +22,18 @@ t_canvas	new_canvas(int width, int height)
 			canvas.canv[i][j] = 0;
 			j++;
 		}
-		i++;
 	}
 	return (canvas);
 }
 
 void	set_canvas_point(t_canvas *canvas, int x, int y, int color)
 {
-	if (canvas->height >= y && y >= 0 &&
-		canvas->width >= x && x >= 0)
-		{
-			canvas->canv[x][(canvas->height - 1 - y)] = color;
-		}
+	if (canvas->height >= y && y >= 0
+		&& canvas->width >= x && x >= 0)
+	{
+		canvas->canv[x][(canvas->height - 1 - y)] = color;
+	}
 }
-
 
 void	print_canvas(t_canvas *canvas, t_image *img)
 {
@@ -71,8 +66,8 @@ void	set_canvas(t_canvas *canvas, t_scene *scene)
 		j = canvas->height;
 		while (j-- > 0)
 		{
-			ray = start_raytrace(scene, (double)(i)/canvas->width,
-										(double)(j)/canvas->height);
+			ray = start_raytrace(scene, (double)(i) / canvas->width,
+					(double)(j) / canvas->height);
 			color = raytrace(&ray, scene);
 			set_canvas_point(&(scene->canvas), i, j, color);
 		}

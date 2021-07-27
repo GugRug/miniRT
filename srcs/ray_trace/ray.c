@@ -18,9 +18,9 @@ double	bhaskara(double a, double b, double c, double *root)
 	double	delta;
 	double	temp;
 
-	delta = b*b - 4*a*c;
-	root[0] = ((-1)*b - sqrt(delta)) / (2*a);
-	root[1] = ((-1)*b + sqrt(delta)) / (2*a);
+	delta = b * b - 4 * a * c;
+	root[0] = ((-1) * b - sqrt(delta)) / (2 * a);
+	root[1] = ((-1) * b + sqrt(delta)) / (2 * a);
 	if (root[0] > root[1])
 	{
 		temp = root[0];

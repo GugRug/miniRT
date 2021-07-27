@@ -6,64 +6,90 @@
 #    By: gumartin <gumartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 08:13:04 by gumartin          #+#    #+#              #
-#    Updated: 2021/07/25 12:42:12 by gumartin         ###   ########.fr        #
+#    Updated: 2021/07/27 10:11:05 by gumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name of the executable file
-NAME		=	miniRT
-
-# Files needed to build this project
-# SRCS_FILES	=	main.c			\
-# 				TESTE.c			\
-# 				color.c			\
-# 				draw.c			\
-# 				hook.c			\
-# 				elem.c			\
-# 				scene.c			\
-# 				rt_file.c		\
-# 				rt_elem.c		\
-# 				rt_elem_utils.c	\
-# 				validate.c
-
-# Location of the dependencies used
-SRCS_DIR	=	./srcs
-OBJS_DIR	=	./objs
-INCS_DIR	=	./include
-MLX_DIR		=	./libs/minilibx
-FT_DIR		=	./libs/libft
-X_DIR		=	/usr/include
+NAME				=	miniRT
 
 # C Compiler configuration
-CC			=	clang
-CC_FLAGS	=	-Wall -Wextra -Werror
-CC_TESTS	=	-g #-fsanitize=address
+CC					=	clang
+CC_FLAGS			=	-Wall -Wextra -Werror
+CC_TESTS			=	-g #-fsanitize=address
+
+# Location of the dependencies used
+SRCS_DIR			=	./srcs
+DIR_SRCS_MAIN		=	$(SRCS_DIR)/main
+DIR_SRCS_RAY		=	$(SRCS_DIR)/ray_trace
+DIR_SRCS_RT			=	$(SRCS_DIR)/rt_file
+DIR_SRCS_UTILS		=	$(SRCS_DIR)/utils
+DIR_SRCS_VECTOR		=	$(SRCS_DIR)/vector
+OBJS_DIR			=	./objs
+INCS_DIR			=	./include
+MLX_DIR				=	./libs/minilibx
+FT_DIR				=	./libs/libft
+X_DIR				=	/usr/include
 
 # Libraries and its location
-LIBFT		=	libft.a
-LIBMLX		=	libmlx.a
-LIBS_DIR_ALL=	-L$(X_DIR) -L$(MLX_DIR) -L$(FT_DIR)
-LIBS_ALL	=	-lbsd -lmlx -lXext -lX11 -lm -lft
-INCS_ALL	=	-I$(INCS_DIR) -I$(MLX_DIR) -I$(FT_DIR)
+LIBFT				=	libft.a
+LIBMLX				=	libmlx.a
+LIBS_DIR_ALL		=	-L$(X_DIR) -L$(MLX_DIR) -L$(FT_DIR)
+LIBS_ALL			=	-lbsd -lmlx -lXext -lX11 -lm -lft
+INCS_ALL			=	-I$(INCS_DIR) -I$(MLX_DIR) -I$(FT_DIR)/include
 
-# Apply path to source files and object ones
-# SRCS		=	$(patsubst %.c, $(SRCS_DIR)/%.c, $(SRCS_FILES))
-# OBJS		=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS_FILES))
-SUBDIRS		= rt_file utils main vector ray_trace
+# Sources
+SRCS_MAIN			=	$(DIR_SRCS_MAIN)/bitmap.c					\
+						$(DIR_SRCS_MAIN)/elem.c						\
+						$(DIR_SRCS_MAIN)/error.c					\
+						$(DIR_SRCS_MAIN)/main.c						\
+						$(DIR_SRCS_MAIN)/scene.c
 
-DIR_SRCS	= $(foreach dir, $(SUBDIRS), $(addprefix $(SRCS_DIR)/, $(dir)))
-DIR_OBJS	= $(foreach dir, $(SUBDIRS), $(addprefix $(OBJS_DIR)/, $(dir)))
-SRCS		= $(foreach dir, $(DIR_SRCS), $(wildcard $(dir)/*.c))
-OBJS		= $(subst $(SRCS_DIR), $(OBJS_DIR), $(SRCS:.c=.o))
+SRCS_RAY			=	$(DIR_SRCS_RAY)/camera.c					\
+						$(DIR_SRCS_RAY)/canvas.c					\
+						$(DIR_SRCS_RAY)/color.c						\
+						$(DIR_SRCS_RAY)/hit.c						\
+						$(DIR_SRCS_RAY)/ray.c						\
+						$(DIR_SRCS_RAY)/raytrace.c
 
+SRCS_RT				=	$(DIR_SRCS_RT)/rt_elem.c					\
+						$(DIR_SRCS_RT)/rt_elem_obj.c				\
+						$(DIR_SRCS_RT)/rt_file.c					\
+						$(DIR_SRCS_RT)/validate.c
+
+SRCS_UTILS			=	$(DIR_SRCS_UTILS)/clean.c					\
+						$(DIR_SRCS_UTILS)/draw.c					\
+						$(DIR_SRCS_UTILS)/hit_utils.c				\
+						$(DIR_SRCS_UTILS)/hook.c					\
+						$(DIR_SRCS_UTILS)/rt_elem_utils.c			\
+						$(DIR_SRCS_UTILS)/validate_utils.c
+
+SRCS_VECTOR			=	$(DIR_SRCS_VECTOR)/vector_2.c				\
+						$(DIR_SRCS_VECTOR)/vector.c					\
+
+# Compact to SRCS
+SRCS 				=	$(SRCS_MAIN)								\
+						$(SRCS_RAY)									\
+						$(SRCS_RT)									\
+						$(SRCS_UTILS)								\
+						$(SRCS_VECTOR)
+
+# OBJS
+SUBDIRS				=	rt_file utils main vector ray_trace
+DIR_OBJS			=	$(foreach dir, $(SUBDIRS),					\
+						$(addprefix $(OBJS_DIR)/, $(dir)))
+OBJS				=	$(subst $(SRCS_DIR), $(OBJS_DIR), $(SRCS:.c=.o))
+
+# RULES
 all:	$(FT_DIR)/$(LIBFT) $(MLX_DIR)/$(LIBMLX) $(NAME)
 
 $(NAME):	$(OBJS)
-	$(CC) $(CC_FLAGS) $(CC_TESTS) $^ $(LIBS_DIR_ALL) $(LIBS_ALL) -o $@
+	@$(CC) $(CC_FLAGS) $(CC_TESTS) $^ $(LIBS_DIR_ALL) $(LIBS_ALL) -o $@
+	@echo "miniRT is ready to use!"
 
 $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIR) $(DIR_OBJS)
-	$(CC) $(CC_FLAGS) $(CC_TESTS) $(INCS_ALL) -c $< -o $@
+	@$(CC) $(CC_FLAGS) $(CC_TESTS) $(INCS_ALL) -c $< -o $@
 
 $(FT_DIR)/$(LIBFT):
 	@echo "Making libft . . ."
@@ -76,11 +102,8 @@ $(MLX_DIR)/$(LIBMLX):
 	@echo "libmlx is ready to use!"
 
 clean:
-	@echo "Cleaning libft . . ."
-	@$(MAKE) -C $(FT_DIR) clean
-	@echo "libft has been cleaned!"
 	@echo "Removing object files [.obj] . . ."
-	$(RM) -r $(OBJS_DIR)
+	@$(RM) -r $(OBJS_DIR)
 	@echo "Object files were removed successfully!"
 
 fclean:	clean
@@ -91,75 +114,12 @@ fclean:	clean
 	@$(MAKE) -C $(FT_DIR) fclean
 	@echo "libft has been cleaned thoroughly!"
 	@echo "Removing $(NAME) . . ."
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "$(NAME) was removed successfully!"
 
 valg:
-	valgrind --leak-check=full --track-origins=yes ./miniRT board.rt
+	valgrind --leak-check=full ./miniRT examples/pokeball.rt
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
-
-# NAME		=	miniRT
-
-# LIB_DIR		=	./lib
-# MLX_DIR		=	${LIB_DIR}/minilibx
-# LIBFT_DIR	=	${LIB_DIR}/libft
-
-# MLX			=	${MLX_DIR}/libmlx_Linux.a
-# LIBFT		=	${LIBFT_DIR}/libft.a
-# MODULES		=	$(LIB_DIR) $(MLX_DIR)
-
-# CC			=	gcc
-
-# CC_FLAGS	=	-c -Wall -Wextra -Werror	\
-# 				-I${MLX_DIR}	\
-# 				-I${LIBFT_DIR}	\
-# 				-I${INCLUDE_DIR}
-
-# ML_FLAGS	=	-L${LIBFT_DIR}		\
-# 				-L${MLX_DIR}		\
-# 				-lm					\
-# 				-lft				\
-# 				-lmlx_Linux			\
-# 				-lXext				\
-# 				-lX11
-
-# INCLUDE_DIR	=	./include
-# SRC_DIR		=	./src
-# OBJ_DIR		=	./obj
-
-# SRC			= 	${SRC_DIR}/main.c	\
-# OBJ			=	$(patsubst %.c, %.o, ${SRC})
-
-
-# all: $(NAME)
-
-# $(NAME): $(OBJ)
-# 	$(CC) $^ $(ML_FLAGS) -o $@
-
-# $(LIBFT):
-# 	$(MAKE) -C $(LIBFT_DIR)
-# $(MLX):
-# 	$(MAKE) -C $(MLX_DIR)
-
-
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ${LIBFT} ${MLX}
-# 	mkdir -p $(OBJ_DIR)
-# 	$(CC) $(CC_FLAG) $(INCLUDE) $< -o $@
-
-# clean:
-# 	for dir in $(MODULES); do	\
-# 		$(MAKE) clean -C $$dir;	\
-# 	done
-# 	rm -f $(OBJ)
-
-# fclean: clean
-# 	@$(MAKE) fclean -C $(LIB_DIR)
-# 	rm -f $(NAME)
-
-# re: fclean all
-
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean valg re

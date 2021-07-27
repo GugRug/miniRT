@@ -1,5 +1,16 @@
 {
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.rulers": [80],
+    "files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
 	"files.associations": {
-		"minirt.h": "c"
-	}
+		"bitmap.h": "c",
+		"minirt.h": "c",
+		"validate_args.h": "c",
+		"canvas.h": "c",
+		"libft.h": "c"
+	},
 }

@@ -8,6 +8,8 @@ void	set_rt_sphere(t_elem *elem, char **splitted)
 	if (!valid_float(splitted[2]))
 		message_and_exit(E_CHAR_ARG, "Sphere diiameter Float only");
 	elem->sphere.diameter = ft_atof(splitted[2]);
+	if (!validate_posit(elem->sphere.diameter, 1, 1))
+		message_and_exit(E_CHAR_ARG, "Sphere diameter Positive only");
 	elem->sphere.color = set_rt_color(splitted[3]);
 }
 
@@ -35,6 +37,8 @@ void	set_rt_square(t_elem *elem, char **splitted)
 	if (!valid_float(splitted[3]))
 		message_and_exit(E_CHAR_ARG, "Square side Float only");
 	elem->square.side = ft_atof(splitted[3]);
+	if (!validate_posit(elem->square.side, 1, 1))
+		message_and_exit(E_CHAR_ARG, "Square side Positive only");
 	elem->square.color = set_rt_color(splitted[4]);
 	set_square_vertex(&(elem->square));
 }
@@ -55,6 +59,9 @@ void	set_rt_cylinder(t_elem *elem, char **splitted)
 	if (!valid_float(splitted[4]))
 		message_and_exit(E_CHAR_ARG, "Cylinder Height Float only");
 	elem->cy.height = ft_atof(splitted[4]);
+	if (!validate_posit(elem->cy.diameter, elem->cy.height, 1))
+		message_and_exit(E_CHAR_ARG,
+			"Cylinder diameter and height Positive only");
 	elem->cy.color = set_rt_color(splitted[5]);
 }
 
@@ -62,9 +69,9 @@ void	set_rt_triangle(t_elem *elem, char **splitted)
 {
 	if (strarray_len(splitted) != 5)
 		message_and_exit(E_N_ARGS_FILE, splitted[0]);
-	elem->triangle.vertex[0] = set_rt_point(splitted[1]);
+	elem->triangle.vertex[2] = set_rt_point(splitted[1]);
 	elem->triangle.vertex[1] = set_rt_point(splitted[2]);
-	elem->triangle.vertex[2] = set_rt_point(splitted[3]);
+	elem->triangle.vertex[0] = set_rt_point(splitted[3]);
 	elem->triangle.color = set_rt_color(splitted[4]);
 	elem->triangle.normal = v_norm(v_cross(
 				v_sub(elem->triangle.vertex[1], elem->triangle.vertex[0]),

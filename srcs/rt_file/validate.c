@@ -13,6 +13,8 @@ void	validate_args(int argc, char **argv, t_rt *rt)
 		message_and_exit(E_FILE, NULL);
 	if (argc == 3 && !ft_strncmp(argv[2], "--save", 7))
 		rt->save = true;
+	else if (argc == 3)
+		message_and_exit(E_C_ARGS, argv[2]);
 	else
 		rt->save = false;
 	set_rt(rt);
@@ -54,4 +56,13 @@ bool	validate_rt_name(char *name)
 	if (ext && !ft_strncmp(ext, ".rt", 4))
 		return (true);
 	return (false);
+}
+
+int	color_check(int color)
+{
+	if (color > 0xFF)
+		return (0xFF);
+	else if (color < 0x0)
+		return (0x0);
+	return (color);
 }
